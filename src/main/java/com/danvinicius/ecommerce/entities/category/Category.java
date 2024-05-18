@@ -1,0 +1,36 @@
+package com.danvinicius.ecommerce.entities.category;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import com.danvinicius.ecommerce.entities.product.Product;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity(name = "category")
+@Table(name = "category")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Category {
+
+    @Id()
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    private String name;
+
+    @OneToMany
+    private List<Product> products = new ArrayList<Product>();
+}
