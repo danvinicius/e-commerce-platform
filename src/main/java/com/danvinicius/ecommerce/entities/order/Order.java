@@ -19,6 +19,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,7 +43,9 @@ public class Order implements Serializable {
     private Set<OrderItem> items = new HashSet<OrderItem>();
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    Instant instant;
+    private Instant instant;
+
+    private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "shipping_address_id")

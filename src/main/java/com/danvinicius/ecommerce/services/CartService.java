@@ -45,7 +45,7 @@ public class CartService {
         return product.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
-    public Cart addItemToCart(String cartId, CartItemRequestDTO item) {
+    public Cart addItemToCart(String cartId, CartItemRequestDTO item) throws ProductAlreadyInCartException, ProductUnavailable {
         Cart cart = getCartById(cartId);
         Product product = productService.getProductById(item.productId());
 
@@ -71,7 +71,7 @@ public class CartService {
         return cart;
     }
     
-    public Cart removeItemFromCart(String cartId, CartItemRequestDTO item) {
+    public Cart removeItemFromCart(String cartId, CartItemRequestDTO item) throws ProductNotInCartException {
         Cart cart = getCartById(cartId);
         Product product = productService.getProductById(item.productId());
         if (!isProductInCart(cart, product)) {
@@ -91,7 +91,7 @@ public class CartService {
         return cart;
     }
 
-    public Cart increaseItemQuantityInCart(String cartId, CartItemRequestDTO item) {
+    public Cart increaseItemQuantityInCart(String cartId, CartItemRequestDTO item) throws ProductNotInCartException, ProductUnavailable {
         Cart cart = getCartById(cartId);
         Product product = productService.getProductById(item.productId());
         if (!isProductInCart(cart, product)) {
@@ -114,7 +114,7 @@ public class CartService {
         return cart;
     }
 
-    public Cart decreaseItemQuantityInCart(String cartId, CartItemRequestDTO item) {
+    public Cart decreaseItemQuantityInCart(String cartId, CartItemRequestDTO item) throws ProductNotInCartException {
         Cart cart = getCartById(cartId);
         Product product = productService.getProductById(item.productId());
         if (!isProductInCart(cart, product)) {
