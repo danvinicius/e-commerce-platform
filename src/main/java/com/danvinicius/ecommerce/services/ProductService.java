@@ -35,4 +35,32 @@ public class ProductService {
         productRepository.save(product);
         return product;
     }
+
+    public Product updateProduct(String id, ProductRequestDTO data) {
+        Product product = getProductById(id);
+        if (data.name() != null && !data.name().isEmpty()) {
+            product.setName(data.name());
+        }
+        if (data.description() != null && !data.description().isEmpty()) {
+            product.setDescription(data.description());
+        }
+        if (data.imageUrl() != null && !data.imageUrl().isEmpty()) {
+            product.setImageUrl(data.imageUrl());
+        }
+        if (data.price() != null) {
+            product.setPrice(data.price());
+        }
+        if (data.categoryId() != null && !data.categoryId().isEmpty()) {
+            Category category = categoryService.getCategoryById(data.categoryId());
+            product.setCategory(category);
+        }
+        productRepository.save(product);
+        return product;
+    }
+
+    public void deleteProduct(String id) {
+        Product product = getProductById(id);
+        productRepository.delete(product);
+    }
+    
 }
