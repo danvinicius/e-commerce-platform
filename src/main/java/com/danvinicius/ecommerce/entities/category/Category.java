@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.danvinicius.ecommerce.dto.category.CategoryRequestDTO;
 import com.danvinicius.ecommerce.entities.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +37,7 @@ public class Category implements Serializable {
     private String name;
 
     @OneToMany
+    @JsonIgnore
     private List<Product> products = new ArrayList<Product>();
 
     public Category(CategoryRequestDTO data) {

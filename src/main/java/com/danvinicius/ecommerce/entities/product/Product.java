@@ -9,6 +9,7 @@ import java.util.UUID;
 import com.danvinicius.ecommerce.dto.product.ProductRequestDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
 import com.danvinicius.ecommerce.entities.order.OrderItem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,6 +48,7 @@ public class Product implements Serializable {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "id.product")
+    @JsonIgnore
     private Set<OrderItem> items = new HashSet<OrderItem>();
 
     @ManyToOne
