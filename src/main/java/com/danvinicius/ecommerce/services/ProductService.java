@@ -28,6 +28,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
     public Product createProduct(ProductRequestDTO data) {
         Product product = new Product(data);
         Category category = categoryService.getCategoryById(data.categoryId());

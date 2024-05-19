@@ -11,6 +11,7 @@ import com.danvinicius.ecommerce.entities.category.Category;
 import com.danvinicius.ecommerce.entities.order.OrderItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,7 +51,7 @@ public class Product implements Serializable {
 
     private Integer quantity;
 
-    @OneToMany(mappedBy = "id.product")
+    @OneToMany(mappedBy = "id.product", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<OrderItem> items = new HashSet<OrderItem>();
 

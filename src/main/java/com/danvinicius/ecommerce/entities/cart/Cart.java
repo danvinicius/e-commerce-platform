@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.danvinicius.ecommerce.dto.cart.CartRequestDTO;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,9 +34,8 @@ public class Cart implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     Set<CartItem> items = new HashSet<CartItem>();
 
     private BigDecimal totalPrice = BigDecimal.valueOf(0);
-
 }
