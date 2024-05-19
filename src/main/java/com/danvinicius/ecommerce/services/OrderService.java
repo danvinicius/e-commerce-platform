@@ -43,7 +43,10 @@ public class OrderService {
     }
 
     public Order createOrder(OrderRequestDTO data) {
-        ShippingAddress address = shippingAddressService.getAddressById(data.shippingAddressId());
+        ShippingAddress address = null;
+        if (data.shippingAddressId() != null && !data.shippingAddressId().isEmpty()) {
+            address = shippingAddressService.getAddressById(data.shippingAddressId());
+        }
         Cart cart = cartService.getCartById(data.cartId());
         Order order = new Order(null, null, Instant.parse(LocalDateTime.now().toString()), OrderStatus.WAITING_PAYMENT, address);
 
