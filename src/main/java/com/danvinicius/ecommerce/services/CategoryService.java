@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.danvinicius.ecommerce.dto.category.CategoryRequestDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
-import com.danvinicius.ecommerce.exceptions.CategoryNotFoundException;
+import com.danvinicius.ecommerce.exceptions.ResourceNotFoundException;
 import com.danvinicius.ecommerce.repositories.CategoryRepository;
 
 @Service
@@ -16,8 +16,8 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category getCategoryById(String id) throws CategoryNotFoundException {
-        return categoryRepository.findById(UUID.fromString(id)).orElseThrow(CategoryNotFoundException::new);
+    public Category getCategoryById(String id) throws ResourceNotFoundException {
+        return categoryRepository.findById(UUID.fromString(id)).orElseThrow(ResourceNotFoundException::new);
     }
 
       public List<Category> getAllCategories() {

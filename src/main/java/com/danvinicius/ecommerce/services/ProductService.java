@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.danvinicius.ecommerce.dto.product.ProductRequestDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
 import com.danvinicius.ecommerce.entities.product.Product;
-import com.danvinicius.ecommerce.exceptions.ProductNotFoundException;
+import com.danvinicius.ecommerce.exceptions.ResourceNotFoundException;
 import com.danvinicius.ecommerce.repositories.ProductRepository;
 
 @Service
@@ -20,8 +20,8 @@ public class ProductService {
     @Autowired
     private CategoryService categoryService;
 
-    public Product getProductById(String id) throws ProductNotFoundException {
-        return productRepository.findById(UUID.fromString(id)).orElseThrow(ProductNotFoundException::new);
+    public Product getProductById(String id) throws ResourceNotFoundException {
+        return productRepository.findById(UUID.fromString(id)).orElseThrow(ResourceNotFoundException::new);
     }
     
     public List<Product> getAllProducts() {
