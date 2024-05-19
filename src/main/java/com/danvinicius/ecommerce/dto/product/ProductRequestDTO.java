@@ -10,6 +10,7 @@ public record ProductRequestDTO(
     @NotBlank String description,
     String imageUrl,
     @NotNull BigDecimal price,
+    @NotNull Integer quantity,
     @NotBlank String categoryId
     ) {
 }

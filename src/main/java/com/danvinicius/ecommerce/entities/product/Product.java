@@ -47,6 +47,8 @@ public class Product implements Serializable {
 
     private BigDecimal price;
 
+    private Integer quantity;
+
     @OneToMany(mappedBy = "id.product")
     @JsonIgnore
     private Set<OrderItem> items = new HashSet<OrderItem>();
@@ -59,5 +61,6 @@ public class Product implements Serializable {
         this.description = data.description();
         this.imageUrl = data.imageUrl();
         this.price = data.price();
+        this.quantity = data.quantity();
     }
 }

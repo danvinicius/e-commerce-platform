@@ -50,6 +50,9 @@ public class ProductService {
         if (data.price() != null) {
             product.setPrice(data.price());
         }
+        if (data.quantity() != null) {
+            product.setQuantity(data.quantity());
+        }
         if (data.categoryId() != null && !data.categoryId().isEmpty()) {
             Category category = categoryService.getCategoryById(data.categoryId());
             product.setCategory(category);
