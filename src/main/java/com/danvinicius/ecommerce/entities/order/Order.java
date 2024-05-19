@@ -5,10 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.danvinicius.ecommerce.entities.address.ShippingAddress;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -32,4 +35,7 @@ public class Order implements Serializable {
     
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<OrderItem>();
+
+    @ManyToOne
+    private ShippingAddress shippingAddress;
 }
