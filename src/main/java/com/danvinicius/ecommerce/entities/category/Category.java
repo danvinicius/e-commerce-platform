@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.danvinicius.ecommerce.dto.category.CategoryRequestDTO;
 import com.danvinicius.ecommerce.entities.product.Product;
 
 import jakarta.persistence.Entity;
@@ -36,4 +37,8 @@ public class Category implements Serializable {
 
     @OneToMany
     private List<Product> products = new ArrayList<Product>();
+
+    public Category(CategoryRequestDTO data) {
+        this.name = data.name();
+    }
 }

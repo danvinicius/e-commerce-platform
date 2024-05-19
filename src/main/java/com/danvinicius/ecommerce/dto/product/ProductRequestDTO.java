@@ -2,11 +2,13 @@ package com.danvinicius.ecommerce.dto.product;
 
 import java.math.BigDecimal;
 
+import jakarta.validation.constraints.NotBlank;
+
 public record ProductRequestDTO(
-    String name,
-    String description,
+    @NotBlank String name,
+    @NotBlank String description,
     String imageUrl,
-    BigDecimal price,
-    String categoryId
+    @NotBlank BigDecimal price,
+    @NotBlank String categoryId
     ) {
 }
