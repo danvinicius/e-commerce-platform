@@ -3,13 +3,14 @@ package com.danvinicius.ecommerce.entities.product;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import com.danvinicius.ecommerce.dto.product.ProductRequestDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
 import com.danvinicius.ecommerce.entities.order.OrderItem;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,6 +39,11 @@ public class Product implements Serializable {
 
     private String name;
 
+    private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
     private BigDecimal price;
 
     @OneToMany(mappedBy = "id.product")
@@ -45,4 +51,11 @@ public class Product implements Serializable {
 
     @ManyToOne
     private Category category;
+
+    public Product(ProductRequestDTO data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.imageUrl = data.imageUrl();
+        this.price = data.price();
+    }
 }
