@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.danvinicius.ecommerce.dto.cart.CartItemRequestDTO;
+import com.danvinicius.ecommerce.dto.cart.CartRequestDTO;
 import com.danvinicius.ecommerce.entities.cart.Cart;
 import com.danvinicius.ecommerce.entities.cart.CartItem;
 import com.danvinicius.ecommerce.entities.product.Product;
@@ -31,6 +32,17 @@ public class CartService {
 
     public List<Cart> getAllCarts() {
         return cartRepository.findAll();
+    }
+
+    public Cart createCart(CartRequestDTO data) {
+        Cart cart = new Cart();
+        data.items().stream().forEach(item -> {
+            Product product = productService.getProductById(item.productId());
+            CartItem cartItem = new CartItem(null, cart, product, item.quantity(), product.getPrice());
+            cart.getItems().add(cartItem);
+        });
+        cartRepository.save(cart);
+        return cart;
     }
 
     private Boolean isProductInCart(Cart cart, Product product) {
