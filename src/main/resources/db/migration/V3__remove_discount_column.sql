@@ -1,0 +1,1 @@
+ALTER TABLE tb_cart_item DROP discount;

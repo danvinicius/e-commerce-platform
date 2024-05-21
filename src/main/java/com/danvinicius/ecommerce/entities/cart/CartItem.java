@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.danvinicius.ecommerce.entities.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class CartItem implements Serializable {
     
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
+	@JsonIgnore
 	private Cart cart;
 	
 	@ManyToOne
