@@ -1,14 +1,19 @@
 package com.danvinicius.ecommerce.entities.category;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.danvinicius.ecommerce.dto.category.CategoryRequestDTO;
 import com.danvinicius.ecommerce.entities.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,6 +46,14 @@ public class Category implements Serializable {
     @OneToMany
     @JsonIgnore
     private List<Product> products = new ArrayList<Product>();
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     public Category(CategoryRequestDTO data) {
         this.name = data.name();
