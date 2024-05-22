@@ -39,7 +39,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     
-    @OneToMany(mappedBy = "id.order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderItem> items = new HashSet<OrderItem>();
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")

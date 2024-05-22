@@ -1,7 +1,6 @@
 package com.danvinicius.ecommerce.services;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,13 +47,18 @@ public class OrderService {
             address = shippingAddressService.getAddressById(data.shippingAddressId());
         }
         Cart cart = cartService.getCartById(data.cartId());
-        Order order = new Order(null, null, Instant.parse(LocalDateTime.now().toString()), OrderStatus.WAITING_PAYMENT, address);
+        Order order = new Order();
+        order.setInstant(Instant.now());
+        order.setStatus(OrderStatus.WAITING_PAYMENT);
+        order.setShippingAddress(address);
 
         for (CartItem cartItem: cart.getItems()) {
             Product product = productService.getProductById(cartItem.getProduct().getId().toString());
-            OrderItem orderItem = new OrderItem(null, cartItem.getQuantity(), cartItem.getPrice());
-            orderItem.getId().setOrder(order);
-            orderItem.getId().setProduct(product);
+            OrderItem orderItem = new OrderItem();
+            orderItem.setQuantity(cartItem.getQuantity());
+            orderItem.setPrice(cartItem.getPrice());
+            orderItem.setOrder(order);
+            orderItem.setProduct(product);
             order.getItems().add(orderItem);
         }
 
@@ -79,5 +83,10 @@ public class OrderService {
         Order order = getOrderById(id);
         order.setStatus(OrderStatus.CANCELED);
         orderRepository.save(order);
+    }
+
+    public void deleteOrder(String id) {
+        Order order = getOrderById(id);
+        orderRepository.delete(order);
     }
 }

@@ -48,7 +48,7 @@ public class ShippingAddressController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<ShippingAddress> updateAddress(@PathVariable String id, @Valid @RequestBody ShippingAddressRequestDTO data) {
+    public ResponseEntity<ShippingAddress> updateAddress(@PathVariable String id, @RequestBody ShippingAddressRequestDTO data) {
         ShippingAddress address = addressService.updateAddress(id, data);
         return ResponseEntity.ok().body(address);
     }

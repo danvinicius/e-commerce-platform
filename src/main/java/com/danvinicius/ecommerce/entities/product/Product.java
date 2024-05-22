@@ -51,7 +51,7 @@ public class Product implements Serializable {
 
     private Integer quantity;
 
-    @OneToMany(mappedBy = "id.product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<OrderItem> items = new HashSet<OrderItem>();
 

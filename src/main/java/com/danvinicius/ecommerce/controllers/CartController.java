@@ -55,7 +55,7 @@ public class CartController {
     }
 
     @PutMapping("/{id}/item/remove")
-    public ResponseEntity<Cart> removeItemFromCart(@PathVariable String id, @Valid @RequestBody CartItemRequestDTO data) {
+    public ResponseEntity<Cart> removeItemFromCart(@PathVariable String id, @RequestBody CartItemRequestDTO data) {
         Cart cart = cartService.removeItemFromCart(id, data);
         return ResponseEntity.ok().body(cart);
     }
