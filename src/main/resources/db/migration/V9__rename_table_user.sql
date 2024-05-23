@@ -1,0 +1,1 @@
+ALTER TABLE tb_users RENAME TO tb_user; 
