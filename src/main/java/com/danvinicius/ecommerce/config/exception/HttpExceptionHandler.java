@@ -1,11 +1,11 @@
-package com.danvinicius.ecommerce.config;
+package com.danvinicius.ecommerce.config.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.danvinicius.ecommerce.dto.error.HttpErrorMessage;
+import com.danvinicius.ecommerce.dto.exception.HttpErrorMessage;
 import com.danvinicius.ecommerce.exceptions.BadRequestException;
 import com.danvinicius.ecommerce.exceptions.ProductAlreadyInCartException;
 import com.danvinicius.ecommerce.exceptions.ProductNotInCartException;

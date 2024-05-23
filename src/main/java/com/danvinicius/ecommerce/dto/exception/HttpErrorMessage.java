@@ -1,4 +1,4 @@
-package com.danvinicius.ecommerce.dto.error;
+package com.danvinicius.ecommerce.dto.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
