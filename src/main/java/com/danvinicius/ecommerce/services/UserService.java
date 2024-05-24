@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.danvinicius.ecommerce.dto.user.CreateUserDTO;
+import com.danvinicius.ecommerce.dto.user.UserRequestDTO;
 import com.danvinicius.ecommerce.entities.user.User;
 import com.danvinicius.ecommerce.entities.user.UserRole;
 import com.danvinicius.ecommerce.repositories.UserRepository;
@@ -23,9 +23,16 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(username);
     }
 
-    public User createUser(CreateUserDTO data) {
+    public User createUser(UserRequestDTO data) {
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User user = new User(data.email(), encryptedPassword, UserRole.USER);
+        User user = new User(data.email(), encryptedPassword, UserRole.USER.getRole());
+        return userRepository.save(user);
+    }
+
+    public User createAdminUser(UserRequestDTO data) {
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
+        User user = new User(data.email(), encryptedPassword, UserRole.ADMIN.getRole());
+        System.out.println(user);
         return userRepository.save(user);
     }
 }

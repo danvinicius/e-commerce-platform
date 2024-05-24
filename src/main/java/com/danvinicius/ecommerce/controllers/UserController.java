@@ -7,33 +7,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.danvinicius.ecommerce.dto.user.AuthenticationDTO;
-import com.danvinicius.ecommerce.dto.user.CreateUserDTO;
+import com.danvinicius.ecommerce.dto.user.UserRequestDTO;
 import com.danvinicius.ecommerce.entities.user.User;
-import com.danvinicius.ecommerce.services.AuthenticationService;
 import com.danvinicius.ecommerce.services.UserService;
 
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/api/auth")
+@RequestMapping(value = "/api/user")
 public class UserController {
-
-    @Autowired
-    AuthenticationService authenticationService;
 
     @Autowired
     UserService userService;
 
     @PostMapping
-    public ResponseEntity<Void> login(@Valid @RequestBody AuthenticationDTO data) {
-        authenticationService.authenticate(data);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDTO data) {
+        User user = this.userService.createUser(data);
+        return ResponseEntity.ok().body(user);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@Valid @RequestBody CreateUserDTO data) {
-        User user = this.userService.createUser(data);
+    @PostMapping("/admin")
+    public ResponseEntity<User> createAdminUser(@Valid @RequestBody UserRequestDTO data) {
+        User user = this.userService.createAdminUser(data);
         return ResponseEntity.ok().body(user);
     }
 }
