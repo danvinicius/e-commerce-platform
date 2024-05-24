@@ -25,9 +25,9 @@ import lombok.ToString;
 @Table(name = "tb_user")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class User implements UserDetails {
 
     @Id

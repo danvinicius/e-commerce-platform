@@ -49,7 +49,7 @@ public class OrderService {
         Cart cart = cartService.getCartById(data.cartId());
         Order order = new Order();
         order.setInstant(Instant.now());
-        order.setStatus(OrderStatus.WAITING_PAYMENT);
+        order.setStatus(OrderStatus.WAITING_PAYMENT.getStatus());
         order.setShippingAddress(address);
 
         for (CartItem cartItem: cart.getItems()) {
@@ -69,7 +69,7 @@ public class OrderService {
     public Order updateOrder(String id, OrderRequestDTO data) throws BadRequestException {
         Order order = getOrderById(id);
         if (data.shippingAddressId() != null && !data.shippingAddressId().isEmpty()) {
-            if (order.getStatus() != OrderStatus.WAITING_PAYMENT) {
+            if (order.getStatus() != OrderStatus.WAITING_PAYMENT.getStatus()) {
                 throw new BadRequestException("Order shipping address can't be updated after payment");
             }
             ShippingAddress address = shippingAddressService.getAddressById(data.shippingAddressId());
@@ -81,7 +81,7 @@ public class OrderService {
     
     public void cancelOrder(String id) {
         Order order = getOrderById(id);
-        order.setStatus(OrderStatus.CANCELED);
+        order.setStatus(OrderStatus.CANCELED.getStatus());
         orderRepository.save(order);
     }
 
