@@ -17,16 +17,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.danvinicius.ecommerce.dto.address.ShippingAddressRequestDTO;
 import com.danvinicius.ecommerce.entities.address.ShippingAddress;
-import com.danvinicius.ecommerce.services.ShippingAddressService;
-
+import com.danvinicius.ecommerce.services.AddressService;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/address")
-public class ShippingAddressController {
+public class AddressController {
 
     @Autowired
-    private ShippingAddressService addressService;
+    private AddressService addressService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ShippingAddress> getAddressById(@PathVariable String id) {

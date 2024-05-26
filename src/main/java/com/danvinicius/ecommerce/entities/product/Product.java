@@ -29,13 +29,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "tb_product")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product implements Serializable {
@@ -80,4 +78,12 @@ public class Product implements Serializable {
         this.price = data.price();
         this.quantity = data.quantity();
     }
+
+    @Override
+    public String toString() {
+        return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
+                + ", quantity=" + quantity + ", category=" + category + "]";
+    }
+
+    
 }

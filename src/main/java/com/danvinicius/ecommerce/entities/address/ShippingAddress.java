@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import com.danvinicius.ecommerce.dto.address.ShippingAddressRequestDTO;
+import com.danvinicius.ecommerce.entities.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -44,6 +48,11 @@ public class ShippingAddress implements Serializable {
     private String country;
 
     private String complement;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public ShippingAddress(ShippingAddressRequestDTO data) {
         this.address = data.address();

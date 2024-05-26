@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.danvinicius.ecommerce.entities.address.ShippingAddress;
 
-public interface ShippingAddressRepository extends JpaRepository<ShippingAddress, UUID> {
+public interface AddressRepository extends JpaRepository<ShippingAddress, UUID> {
     
 }

@@ -1,5 +1,5 @@
 package com.danvinicius.ecommerce.dto.user;
 
-public record UserRequestDTO (String email, String password) {
+public record UserRequestDTO (String name, String phone, String email, String password) {
     
 }

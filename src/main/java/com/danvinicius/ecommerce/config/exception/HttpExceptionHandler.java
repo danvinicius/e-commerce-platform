@@ -9,8 +9,9 @@ import com.danvinicius.ecommerce.dto.exception.HttpErrorMessage;
 import com.danvinicius.ecommerce.exceptions.BadRequestException;
 import com.danvinicius.ecommerce.exceptions.ProductAlreadyInCartException;
 import com.danvinicius.ecommerce.exceptions.ProductNotInCartException;
-import com.danvinicius.ecommerce.exceptions.ProductUnavailable;
+import com.danvinicius.ecommerce.exceptions.ProductUnavailableException;
 import com.danvinicius.ecommerce.exceptions.ResourceNotFoundException;
+import com.danvinicius.ecommerce.exceptions.ForbiddenException;
 
 @ControllerAdvice
 public class HttpExceptionHandler extends ResponseEntityExceptionHandler {
@@ -36,9 +37,16 @@ public class HttpExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(status).body(errorMessage);
     }
 
-    @ExceptionHandler(ProductUnavailable.class)
-    private ResponseEntity<HttpErrorMessage> productUnavailableHandler(ProductUnavailable exception) {
+    @ExceptionHandler(ProductUnavailableException.class)
+    private ResponseEntity<HttpErrorMessage> productUnavailableHandler(ProductUnavailableException exception) {
         Integer status = HttpStatus.CONFLICT.value();
+        HttpErrorMessage errorMessage = new HttpErrorMessage(exception.getMessage(), status);
+        return ResponseEntity.status(status).body(errorMessage);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    private ResponseEntity<HttpErrorMessage> forbiddenExceptionHandler(ForbiddenException exception) {
+        Integer status = HttpStatus.FORBIDDEN.value();
         HttpErrorMessage errorMessage = new HttpErrorMessage(exception.getMessage(), status);
         return ResponseEntity.status(status).body(errorMessage);
     }

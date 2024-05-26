@@ -1,9 +1,15 @@
 package com.danvinicius.ecommerce.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +26,24 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
+        User user = userService.getUserById(id);
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> getMe() {
+        User user = userService.getMe();
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok().body(users);
+    }
+
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDTO data) {
         User user = this.userService.createUser(data);
@@ -30,5 +54,23 @@ public class UserController {
     public ResponseEntity<User> createAdminUser(@Valid @RequestBody UserRequestDTO data) {
         User user = this.userService.createAdminUser(data);
         return ResponseEntity.ok().body(user);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody UserRequestDTO data) {
+        User user = userService.updateUser(id, data);
+        return ResponseEntity.ok().body(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Void> deleteAdminUser(@PathVariable String id) {
+        userService.deleteAdminUser(id);
+        return ResponseEntity.noContent().build();
     }
 }

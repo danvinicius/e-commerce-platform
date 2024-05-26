@@ -19,13 +19,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Table(name = "tb_order_item")
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -48,5 +46,12 @@ public class OrderItem implements Serializable {
     private Integer quantity;
 
     private BigDecimal price;
+
+    @Override
+    public String toString() {
+        return "OrderItem [id=" + id + ", product=" + product + ", quantity=" + quantity + ", price=" + price + "]";
+    }
+
+    
 
 }
