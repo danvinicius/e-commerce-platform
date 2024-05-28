@@ -5,7 +5,7 @@
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
-This project is an API built using **Java, Java Spring, Flyway Migrations, PostgresSQL as the database, and Spring Security and JWT for authentication control.**
+This project is an API built using **Java, Java Spring, PostgresSQL as the database, Feign Client, Flyway Migrations and Spring Security with JWT for authentication control.**
 
 The aim of this project is to practice Java and Spring Framework with authentication, microservices and testing concepts.
 
@@ -19,6 +19,7 @@ The aim of this project is to practice Java and Spring Framework with authentica
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Authentication](#authentication)
+- [Microservices](#microservices)
 - [Database](#database)
 
 ## Installation
@@ -131,6 +132,9 @@ USER -> Standard user role for logged-in users.
 ADMIN -> Admin role.
 ```
 To access protected endpoints as an ADMIN user, provide the appropriate authentication credentials in the request header.
+
+## Microservices
+There's a microservice connection to [Email Service](https://github.com/danvinicius/email-service-uber-challenge) using Feign Client to send emails at some events, e.g user registration.
 
 ## Database
 The project utilizes [PostgresSQL](https://www.postgresql.org/) as the database. The necessary database migrations are managed using Flyway.
