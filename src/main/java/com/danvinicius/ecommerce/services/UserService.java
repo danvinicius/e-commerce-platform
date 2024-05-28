@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.danvinicius.ecommerce.clients.EmailServiceClient;
+import com.danvinicius.ecommerce.config.email.content.RegisterUserEmailContent;
+import com.danvinicius.ecommerce.dto.email.EmailRequestDTO;
 import com.danvinicius.ecommerce.dto.user.UserRequestDTO;
 import com.danvinicius.ecommerce.entities.cart.Cart;
 import com.danvinicius.ecommerce.entities.user.User;
@@ -24,6 +27,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EmailServiceClient emailServiceClient;
 
     private User user() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -62,7 +68,18 @@ public class UserService implements UserDetailsService {
         Cart cart = new Cart();
         cart.setUser(user);
         user.setCart(cart);
-        return userRepository.save(user);
+        userRepository.save(user);
+        this.sendRegistrationEmail(user);
+        return user;
+    }
+
+    private void sendRegistrationEmail(User user) {
+        String firstName = user.getName().split(" ")[0];
+        emailServiceClient.sendEmail(
+                new EmailRequestDTO(
+                        user.getEmail(),
+                        RegisterUserEmailContent.getSubject(),
+                        RegisterUserEmailContent.getBody(firstName)));
     }
 
     public User createAdminUser(UserRequestDTO data) {
