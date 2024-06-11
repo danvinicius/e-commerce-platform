@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Banner from './components/banner/Banner.vue';
 import Header from './components/header/Header.vue'
+import ContentSwiper from './components/main/ContentSwiper.vue'
 
 </script>
 
@@ -8,6 +9,7 @@ import Header from './components/header/Header.vue'
     <Header></Header>
     <div class="container">
       <Banner></Banner>
+      <ContentSwiper title="Our Best Selling"></ContentSwiper>
     </div>
         
 </template>

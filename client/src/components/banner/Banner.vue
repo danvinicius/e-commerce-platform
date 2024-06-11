@@ -45,7 +45,6 @@ import BannerButton from './BannerButton.vue';
         h1 {
             line-height: 1.15;
             max-width: 90%;
-            font-size: 3rem;
         }
     }
 

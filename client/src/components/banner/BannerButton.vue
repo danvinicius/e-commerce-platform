@@ -1,5 +1,5 @@
 <template>
-    <Button background="#fff" text="Buy now" :border="'1px solid #fff'"></Button>
+    <Button background="#fff" text="Buy now" :border="'1px solid #fff'" padding=".75rem 4rem"></Button>
 </template>
 
 <script setup lang="ts">
