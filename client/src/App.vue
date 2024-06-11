@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Banner from './components/banner/Banner.vue';
 import Header from './components/header/Header.vue'
 
 </script>
@@ -6,6 +7,7 @@ import Header from './components/header/Header.vue'
 <template>
     <Header></Header>
     <div class="container">
+      <Banner></Banner>
     </div>
         
 </template>

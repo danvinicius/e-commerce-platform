@@ -16,7 +16,7 @@ defineProps({
 
 <style scoped lang="scss">
 button {
-    padding: .5rem 1.5rem;
+    padding: .75rem 1.75rem;
     border-radius: .5rem;
     transition: .2s;
     font-size: 1rem;

@@ -14,8 +14,7 @@
 
 <style scoped lang="scss">
     nav {
-        font-family: 'Inter', Helvetica, sans-serif;
-        color: #222;
+        color: var(--text-color);
         ul {
             display: flex;
             align-items: center;
