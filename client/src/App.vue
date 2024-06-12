@@ -4,6 +4,7 @@ import Header from './components/header/Header.vue'
 import ContentSwiper from './components/main/ContentSwiper.vue'
 import ProductCard from './components/product/ProductCard.vue';
 import ProductsRecommendation from './components/main/ProductsRecommendation.vue';
+import OnSale from './components/main/OnSale.vue';
 
 const slides = [
   { component: ProductCard, props: { src: 'modelo1.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
@@ -24,6 +25,8 @@ const slides = [
       <Banner></Banner>
       <ContentSwiper title="Our Best Selling" :slides="slides"></ContentSwiper>
       <ProductsRecommendation></ProductsRecommendation>
+      <OnSale title="15% off anime<br>clothing promotion"></OnSale>
+      <ContentSwiper title="New Arrival" :slides="slides"></ContentSwiper>
     </div>
         
 </template>

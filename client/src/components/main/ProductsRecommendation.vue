@@ -1,5 +1,5 @@
 <template>
-    <div class="products-recomendation">
+    <section class="products-recomendation">
         <ProductAd
             title="Lorem ipsum dolor sit amet<br> consectetur adipisicing elit."
             image="modelo1.png"
@@ -12,14 +12,14 @@
             background="var(--secondary-color)"
             color="#fff"
         />
-    </div>
+    </section>
 </template>
 <script setup lang="ts">
 import ProductAd from '../product/ProductAd.vue';
 </script>
 
 <style scoped lang="scss">
-.products-recomendation {
+section.products-recomendation {
     display: flex;
     gap: 2rem;
     justify-content: stretch;
