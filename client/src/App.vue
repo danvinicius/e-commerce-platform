@@ -2,6 +2,19 @@
 import Banner from './components/banner/Banner.vue';
 import Header from './components/header/Header.vue'
 import ContentSwiper from './components/main/ContentSwiper.vue'
+import ProductCard from './components/product/ProductCard.vue';
+import ProductsRecommendation from './components/main/ProductsRecommendation.vue';
+
+const slides = [
+  { component: ProductCard, props: { src: 'modelo1.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+  { component: ProductCard, props: { src: 'modelo2.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+  { component: ProductCard, props: { src: 'modelo3.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+  { component: ProductCard, props: { src: 'modelo4.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+  { component: ProductCard, props: { src: 'modelo1.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+  { component: ProductCard, props: { src: 'modelo2.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+  { component: ProductCard, props: { src: 'modelo3.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+  { component: ProductCard, props: { src: 'modelo4.png', name: 'Camisa Cyberpunk Roxa', price: 39.90 } },
+];
 
 </script>
 
@@ -9,7 +22,8 @@ import ContentSwiper from './components/main/ContentSwiper.vue'
     <Header></Header>
     <div class="container">
       <Banner></Banner>
-      <ContentSwiper title="Our Best Selling"></ContentSwiper>
+      <ContentSwiper title="Our Best Selling" :slides="slides"></ContentSwiper>
+      <ProductsRecommendation></ProductsRecommendation>
     </div>
         
 </template>

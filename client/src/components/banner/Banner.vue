@@ -1,7 +1,7 @@
 <template>
     <div class="banner">
         <div class="content-container">
-            <h1>Discover the Most Stylish Cyberpunk Shirt in Market</h1>
+            <h1>Discover the Most Stylish Cyberpunk Tops in Market</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 xcepturi delectus optio inventore eaque ipsum sit. Maxime aliquid dolorum minima modi.</p>
             <BannerButton></BannerButton>
@@ -25,6 +25,7 @@ import BannerButton from './BannerButton.vue';
     justify-content: flex-start;
     padding: 3rem 2rem 2rem;
     border-radius: .5rem .5rem 9rem .5rem;
+    margin: 0 0 4rem;
 
     .content-container {
         max-width: 60%;

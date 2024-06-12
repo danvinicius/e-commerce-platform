@@ -11,6 +11,8 @@
   </template>
   
   <script setup lang="ts">
+  import { useHelpers } from '../../composables/useHelpers';
+  const {getImageUrl} = useHelpers();
   defineProps({
     src: {
       type: String,
@@ -25,10 +27,6 @@
       required: true,
     },
   });
-
-  const getImageUrl = (name: string) => {
-     return new URL(`../../assets/img/${name}`,import.meta.url).href
-      }
   </script>
   
   <style scoped lang="scss">

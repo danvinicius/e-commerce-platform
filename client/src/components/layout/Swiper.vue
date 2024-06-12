@@ -14,7 +14,7 @@
   </swiper>
 </template>
 <script setup lang="ts">
-type Slide = { component: any, props: any}
+export type Slide = { component: any, props: any}
 defineProps({
   slidesPerView: {
     type: Number,
