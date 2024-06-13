@@ -5,72 +5,38 @@
       <Timer :time="saleDeadline"></Timer>
     </div>
     <div class="products-container">
-      <ContentSwiper :slides="slides" :slidesPerView="3" />
+      <ContentSwiper
+        v-if="onSaleProducts.length"
+        :products="onSaleProducts"
+        :slidesPerView="3"
+        textBackground="transparent"
+        color="#fff"
+      />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { Product } from "../../composables/useProduct";
 import Timer from "../layout/Timer.vue";
 import ContentSwiper from "../main/ContentSwiper.vue";
-import ProductCard from "../product/ProductCard.vue";
+
+import { useProduct } from "../../composables/useProduct";
+
+const { getOnSaleProducts } = useProduct();
+import { onMounted, ref } from "vue";
+
+const onSaleProducts = ref([]);
+
+onMounted(async () => {
+  onSaleProducts.value = await getOnSaleProducts();
+});
 
 defineProps({
   title: String,
 });
 
 const saleDeadline = new Date("2024-06-20T12:00:00");
-
-const slides = [
-  {
-    component: ProductCard,
-    props: {
-      id: "qweqweqwe-asd",
-      imageSrc: "modelo1.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-      height: 200,
-      textBackground: "transparent",
-      color: "#fff",
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "fdsfsdf-asd",
-      imageSrc: "modelo2.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-      height: 200,
-      textBackground: "transparent",
-      color: "#fff",
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "vbcvbbvc-asd",
-      imageSrc: "modelo3.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-      height: 200,
-      textBackground: "transparent",
-      color: "#fff",
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "jkujhsd-asd",
-      imageSrc: "modelo4.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-      height: 200,
-      textBackground: "transparent",
-      color: "#fff",
-    },
-  },
-];
 </script>
 
 <style scoped lang="scss">

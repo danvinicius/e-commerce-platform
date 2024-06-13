@@ -1,5 +1,5 @@
 export const useHelpers = () => {
-  const getImageUrl = (name: string) => {
+  const getimageUrl = (name: string) => {
     return new URL(`../assets/img/${name}`, import.meta.url).href;
   };
 
@@ -14,7 +14,7 @@ export const useHelpers = () => {
   };
 
   return {
-    getImageUrl,
+    getimageUrl,
     slugify
   };
 };

@@ -1,7 +1,8 @@
 <template>
-  <button :style="{ background, color, border, padding }">
-    {{ text }}
-  </button>
+  <button
+    :style="{ background, color, border, padding }"
+    v-html="text"
+  ></button>
 </template>
 
 <script setup lang="ts">

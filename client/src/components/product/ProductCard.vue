@@ -7,17 +7,13 @@
       class="image-container flex justify-center"
       :style="{ background: imageBackground, height }"
     >
-      <img
-        :src="getImageUrl(imageSrc)"
-        :alt="productName"
-        :title="productName"
-      />
+      <img :src="getimageUrl(imageUrl)" :alt="name" :title="name" />
     </div>
     <div
       class="content-container flex column gap-5"
       :style="{ background: textBackground, color }"
     >
-      <p>{{ productName }}</p>
+      <p v-html="name"></p>
       <p class="price">${{ price }}</p>
     </div>
   </router-link>
@@ -25,17 +21,17 @@
   
   <script setup lang="ts">
 import { useHelpers } from "../../composables/useHelpers";
-const { getImageUrl, slugify } = useHelpers();
+const { getimageUrl, slugify } = useHelpers();
 const props = defineProps({
   id: {
     required: true,
     type: String,
   },
-  imageSrc: {
+  imageUrl: {
     required: true,
     type: String,
   },
-  productName: {
+  name: {
     required: true,
     type: String,
   },
@@ -46,7 +42,7 @@ const props = defineProps({
   color: String,
 });
 
-const productLink = `/product/${slugify(props.productName + "-" + props.id)}`;
+const productLink = `/product/${slugify(props.name + "-" + props.id)}`;
 </script>
   
   <style scoped lang="scss">

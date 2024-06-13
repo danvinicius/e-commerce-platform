@@ -12,18 +12,14 @@
       </router-link>
     </div>
     <router-link class="image-container" :to="productLink">
-      <img
-        :src="getImageUrl(imageSrc)"
-        :alt="productName"
-        :title="productName"
-      />
+      <img :src="getimageUrl(imageUrl)" :alt="name" :title="name" />
     </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useHelpers } from "../../composables/useHelpers";
-const { getImageUrl, slugify } = useHelpers();
+const { getimageUrl, slugify } = useHelpers();
 import Button from "../layout/Button.vue";
 
 const props = defineProps({
@@ -34,17 +30,17 @@ const props = defineProps({
     required: true,
     type: String,
   },
-  imageSrc: {
+  imageUrl: {
     required: true,
     type: String,
   },
-  productName: {
+  name: {
     required: true,
     type: String,
   },
 });
 
-const productLink = `/product/${slugify(props.productName + "-" + props.id)}`;
+const productLink = `/product/${slugify(props.name + "-" + props.id)}`;
 </script>
 
 <style scoped lang="scss">
@@ -52,7 +48,7 @@ const productLink = `/product/${slugify(props.productName + "-" + props.id)}`;
   border-radius: 5rem 0.5rem 5rem 0.5rem;
   padding: 1.5rem 2rem;
   flex-grow: 1;
-  flex-basis: 400px;
+  flex-basis: 300px;
 
   .content-container {
     gap: 3rem;

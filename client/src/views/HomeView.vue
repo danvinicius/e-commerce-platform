@@ -2,10 +2,19 @@
   <Header></Header>
   <div class="container">
     <Banner></Banner>
-    <ContentSwiper title="Our Best Selling" :slides="slides"></ContentSwiper>
+    <ContentSwiper
+      v-if="bestSellingProducts.length"
+      title="Our Best Selling"
+      :products="bestSellingProducts"
+    ></ContentSwiper>
     <ProductsRecommendation></ProductsRecommendation>
     <OnSale title="15% off anime<br>clothing promotion"></OnSale>
-    <ContentSwiper title="New Arrival" :slides="slides"></ContentSwiper>
+    <ContentSwiper
+      v-if="newArrivalProducts.length"
+      title="New Arrival"
+      :products="newArrivalProducts"
+    >
+    </ContentSwiper>
   </div>
   <Footer></Footer>
 </template>
@@ -17,83 +26,18 @@ import Footer from "../components/footer/Footer.vue";
 import ContentSwiper from "../components/main/ContentSwiper.vue";
 import ProductsRecommendation from "../components/main/ProductsRecommendation.vue";
 import OnSale from "../components/main/OnSale.vue";
-import ProductCard from "../components/product/ProductCard.vue";
 
-const slides = [
-  {
-    component: ProductCard,
-    props: {
-      id: "sdshfghgfhd-asd",
-      imageSrc: "modelo1.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "sdsaghffghfhd-asd",
-      productName: "Camisa Cyberpunk Roxa",
-      imageSrc: "modelo2.png",
-      price: 39.9,
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "sdscfr324d-asd",
-      imageSrc: "modelo3.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "sdujuj7ud-asd",
-      imageSrc: "modelo4.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "svnmfgasd-asd",
-      imageSrc: "modelo1.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "sd893vgdasd-asd",
-      imageSrc: "modelo2.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "sdsdsdfsaad-asd",
-      imageSrc: "modelo3.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-    },
-  },
-  {
-    component: ProductCard,
-    props: {
-      id: "sdnxcei5asd-asd",
-      imageSrc: "modelo4.png",
-      productName: "Camisa Cyberpunk Roxa",
-      price: 39.9,
-    },
-  },
-];
+import { useProduct } from "../composables/useProduct";
+const { getAllProducts, getBestSellingProducts } = useProduct();
+import { onMounted, ref } from "vue";
+
+const newArrivalProducts = ref([]);
+const bestSellingProducts = ref([]);
+
+onMounted(async () => {
+  newArrivalProducts.value = await getAllProducts();
+  bestSellingProducts.value = await getBestSellingProducts();
+});
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

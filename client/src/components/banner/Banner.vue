@@ -1,20 +1,16 @@
 <template>
   <div class="banner flex">
     <div class="content-container flex column align-start">
-      <h1>Discover the Most Stylish Cyberpunk Tops in Market</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. xcepturi
-        delectus optio inventore eaque ipsum sit. Maxime aliquid dolorum minima
-        modi.
-      </p>
+      <h1 v-html="bannerProduct.title"></h1>
+      <p v-html="bannerProduct.subtitle"></p>
       <BannerButton></BannerButton>
     </div>
     <div class="image-container relative">
       <router-link :to="productLink">
         <img
-          :src="getImageUrl(product.imageSrc)"
-          :alt="product.name"
-          :title="product.name"
+          :src="getimageUrl(bannerProduct.imageUrl)"
+          :alt="bannerProduct.name"
+          :title="bannerProduct.name"
         />
       </router-link>
     </div>
@@ -24,16 +20,22 @@
 <script setup lang="ts">
 import BannerButton from "./BannerButton.vue";
 import { useHelpers } from "../../composables/useHelpers";
-const { getImageUrl, slugify } = useHelpers();
+const { getimageUrl, slugify } = useHelpers();
 
-const product = {
-  id: "qweqweqwe-asd",
-  imageSrc: "modelo-banner.png",
-  name: "Camisa Cyberpunk Roxa",
-  price: 39.9,
-};
+import { useProduct } from "../../composables/useProduct";
 
-const productLink = `/product/${slugify(product.name + "-" + product.id)}`;
+const { getBannerProduct } = useProduct();
+import { onMounted, ref } from "vue";
+
+const bannerProduct = ref([]);
+
+onMounted(async () => {
+  bannerProduct.value = await getBannerProduct();
+});
+
+const productLink = `/product/${slugify(
+  bannerProduct.name + "-" + bannerProduct.id
+)}`;
 </script>
 
 <style scoped lang="scss">

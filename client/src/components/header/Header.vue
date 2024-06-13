@@ -1,7 +1,9 @@
 <template>
   <header>
     <div class="container flex align-center space-between">
-      <Logo></Logo>
+      <router-link to="/">
+        <Logo></Logo>
+      </router-link>
       <Menu></Menu>
       <LoginButton></LoginButton>
     </div>

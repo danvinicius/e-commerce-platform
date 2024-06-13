@@ -2,19 +2,19 @@
   <div class="timer flex">
     <div class="days flex column align-center gap-5 relative">
       <p>Days</p>
-      <p>{{ formattedDays }}</p>
+      <p v-html="formattedDays"></p>
     </div>
     <div class="hours flex column align-center gap-5 relative">
       <p>Hours</p>
-      <p>{{ formattedHours }}</p>
+      <p v-html="formattedHours"></p>
     </div>
     <div class="minutes flex column align-center gap-5 relative">
       <p>Minutes</p>
-      <p>{{ formattedMinutes }}</p>
+      <p v-html="formattedMinutes"></p>
     </div>
     <div class="seconds flex column align-center gap-5">
       <p>Seconds</p>
-      <p>{{ formattedSeconds }}</p>
+      <p v-html="formattedSeconds"></p>
     </div>
   </div>
 </template>

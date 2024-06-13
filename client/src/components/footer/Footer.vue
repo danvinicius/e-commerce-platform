@@ -2,7 +2,9 @@
   <footer>
     <div class="container flex space-between gap-2">
       <div class="main flex column align-start">
-        <Logo></Logo>
+        <router-link to="/">
+          <Logo></Logo>
+        </router-link>
         <div class="about">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus natus
