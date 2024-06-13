@@ -1,7 +1,7 @@
 <template>
   <footer>
-    <div class="container">
-      <div class="main">
+    <div class="container flex space-between gap-2">
+      <div class="main flex column align-start">
         <Logo></Logo>
         <div class="about">
           <p>
@@ -10,34 +10,48 @@
           </p>
         </div>
       </div>
-      <div class="sitemap">
+      <div class="sitemap flex column">
         <div class="title">
           <h3>Sitemap</h3>
-          <ul>
+          <ul class="flex column gap-1">
             <li>About Us</li>
             <li>FAQ's</li>
             <li>Customers Services</li>
           </ul>
         </div>
       </div>
-      <div class="products">
+      <div class="products flex column">
         <h3>Products</h3>
-        <ul>
+        <ul class="flex column gap-1">
           <li>Tops</li>
           <li>Bottons</li>
           <li>Accessories</li>
         </ul>
       </div>
-      <div class="social-media-links">
+      <div class="social-media-links flex column">
         <h3>Contact Us</h3>
-        <ul class="social-media-icons">
-          <li><img src="../../assets/icon/Twitter.svg" alt="" /></li>
-          <li><img src="../../assets/icon/Instagram.svg" alt="" /></li>
-          <li><img src="../../assets/icon/Mail.svg" alt="" /></li>
+        <ul class="flex row align-center gap-15">
+          <li>
+            <img
+              src="../../assets/icon/Twitter.svg"
+              alt="Twitter"
+              title="Twitter"
+            />
+          </li>
+          <li>
+            <img
+              src="../../assets/icon/Instagram.svg"
+              alt="Instagram"
+              title="Instagram"
+            />
+          </li>
+          <li>
+            <img src="../../assets/icon/Mail.svg" alt="E-mail" title="E-mail" />
+          </li>
         </ul>
       </div>
     </div>
-    <div class="container">
+    <div class="container flex space-between">
       <p>{{ year }} - Neo6 &copy; All rights reserved</p>
       <p>
         Developed by
@@ -64,10 +78,6 @@ footer {
     text-decoration: unset;
   }
   .container {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-
     &:first-child {
       padding-bottom: 2rem;
       border-bottom: 1px solid #d2d2d2;
@@ -79,10 +89,7 @@ footer {
   }
 
   .main {
-    display: flex;
-    flex-direction: column;
     flex-basis: 30%;
-    align-items: flex-start;
   }
 
   .sitemap,
@@ -91,20 +98,8 @@ footer {
     display: flex;
     flex-direction: column;
 
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
     h3 {
       margin-bottom: 1.5rem;
-    }
-
-    .social-media-icons {
-      flex-direction: row;
-      align-items: center;
-      gap: 1.5rem;
     }
   }
 }

@@ -1,12 +1,12 @@
-@import 'reset.scss';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import "reset.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
   --primary-color: #0066ff;
   --secondary-color: #0abdc6;
   --tertiary-color: #ea00d9;
   --text-color: #091833;
-  font-family: 'Inter', Helvetica, sans-serif;
+  font-family: "Inter", Helvetica, sans-serif;
 }
 .container {
   max-width: 65%;
@@ -31,6 +31,90 @@ h3 {
   font-size: 1.5rem;
 }
 
-p, h1, h2, h3, h4, h5, h6, a {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
   line-height: 1.4;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-15 {
+  gap: 1.5rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-25 {
+  gap: 0.25rem;
+}
+
+.gap-5 {
+  gap: 0.5rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.bg-primary {
+  background: var(--primary-color);
+}
+.bg-secondary {
+  background: var(--secondary-color);
+}
+.bg-tertiary {
+  background: var(--tertiary-color);
+}
+.text-color {
+  color: var(--text-color);
+}
+
+.decoration-none {
+  text-decoration: none;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
 }

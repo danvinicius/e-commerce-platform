@@ -4,17 +4,29 @@
     :space-between="spaceBetween"
     @swiper="onSwiper"
   >
-  <button type="button" @click="swiperPrevSlide" class="left"><div class="arrow left"></div></button>
+    <button
+      type="button"
+      @click="swiperPrevSlide"
+      class="left flex align-center justify-center absolute"
+    >
+      <div class="arrow left"></div>
+    </button>
 
-      <swiper-slide v-for="(slide, index) in slides" :key="index">
-        <component :is="slide.component" v-bind="slide.props"></component>
+    <swiper-slide v-for="(slide, index) in slides" :key="index">
+      <component :is="slide.component" v-bind="slide.props"></component>
     </swiper-slide>
-    
-<button type="button" @click="swiperNextSlide" class="right"> <div class="arrow right"></div></button>
+
+    <button
+      type="button"
+      @click="swiperNextSlide"
+      class="right flex align-center justify-center absolute"
+    >
+      <div class="arrow right"></div>
+    </button>
   </swiper>
 </template>
 <script setup lang="ts">
-export type Slide = { component: any, props: any}
+export type Slide = { component: any; props: any };
 defineProps({
   slidesPerView: {
     type: Number,
@@ -27,27 +39,27 @@ defineProps({
   slides: {
     type: Array<Slide>,
     required: true,
-    default: () => []
+    default: () => [],
   },
 });
-import { ref } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
+import { ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
 
 // References
 const swiperInstance = ref();
 
 // Methods
 function onSwiper(swiper) {
-    swiperInstance.value = swiper;
+  swiperInstance.value = swiper;
 }
 
 const swiperNextSlide = () => {
-    swiperInstance.value.slideNext();
+  swiperInstance.value.slideNext();
 };
 
 const swiperPrevSlide = () => {
-    swiperInstance.value.slidePrev();
+  swiperInstance.value.slidePrev();
 };
 </script>
 
@@ -55,49 +67,45 @@ const swiperPrevSlide = () => {
 .swipper {
   padding: 0 0 1rem !important;
 }
-  button {
-    z-index: 100;
-    position: absolute;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    padding: .5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    box-shadow: 1px 1px 10px #aaa;
-    transition: .2s;
-    top: 50%;
+button {
+  z-index: 100;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  background: #fff;
+  box-shadow: 1px 1px 10px #aaa;
+  transition: 0.2s;
+  top: 50%;
 
-    &:hover {
-      filter: brightness(95%);
-    }
-
-    &.left {
-      left: 1rem;
-    }
-    &.right {
-      right: 1rem;
-    }
+  &:hover {
+    filter: brightness(95%);
   }
 
-  .arrow {
-    z-index: 101;
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
+  &.left {
+    left: 1rem;
+  }
+  &.right {
+    right: 1rem;
+  }
+}
 
-    &.right {
+.arrow {
+  z-index: 101;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+
+  &.right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-    }
-
-    &.left {
-        transform: rotate(135deg);
-        -webkit-transform: rotate(135deg);
-      }
   }
+
+  &.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+}
 </style>
 

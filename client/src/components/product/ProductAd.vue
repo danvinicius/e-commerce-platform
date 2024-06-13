@@ -1,52 +1,70 @@
 <template>
-    <div class="product-ad" :style="{background, color}">
-        <div class="content-container">
-            <h3 v-html="title"></h3>
-            <Button text="Buy now" background="#fff" color="var(--text-color)" :border="'1px solid #fff'"></Button>
-        </div>
-        <div class="image-container">
-            <img :src="getImageUrl(image)" />
-        </div>
+  <div class="product-ad flex space-between" :style="{ background, color }">
+    <div class="content-container flex column justify-center align-start">
+      <h3 v-html="title"></h3>
+      <router-link :to="productLink">
+        <Button
+          text="Buy now"
+          background="#fff"
+          color="var(--text-color)"
+          :border="'1px solid #fff'"
+        ></Button>
+      </router-link>
     </div>
+    <router-link class="image-container" :to="productLink">
+      <img
+        :src="getImageUrl(imageSrc)"
+        :alt="productName"
+        :title="productName"
+      />
+    </router-link>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useHelpers } from '../../composables/useHelpers';
-const {getImageUrl} = useHelpers();
-import Button from '../layout/Button.vue';
+import { useHelpers } from "../../composables/useHelpers";
+const { getImageUrl, slugify } = useHelpers();
+import Button from "../layout/Button.vue";
 
-defineProps({
-    title: String,
-    image: String,
-    background: String,
-    color: String,
-})
+const props = defineProps({
+  title: String,
+  background: String,
+  color: String,
+  id: {
+    required: true,
+    type: String,
+  },
+  imageSrc: {
+    required: true,
+    type: String,
+  },
+  productName: {
+    required: true,
+    type: String,
+  },
+});
+
+const productLink = `/product/${slugify(props.productName + "-" + props.id)}`;
 </script>
 
 <style scoped lang="scss">
 .product-ad {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 5rem .5rem 5rem .5rem;
-    padding: 1.5rem 2rem;
-    flex-grow: 1;
+  border-radius: 5rem 0.5rem 5rem 0.5rem;
+  padding: 1.5rem 2rem;
+  flex-grow: 1;
+  flex-basis: 400px;
+
+  .content-container {
+    gap: 3rem;
+  }
+
+  .image-container {
     flex-basis: 400px;
-    
-    .content-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 3rem;
-    }
 
-    .image-container {
-        flex-basis: 400px;        
-
-        img {
-            max-width: 100%;
-            max-height: 250px;
-        }
+    img {
+      max-width: 100%;
+      max-height: 250px;
     }
+  }
 }
 </style>

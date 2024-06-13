@@ -22,35 +22,75 @@ import ProductCard from "../components/product/ProductCard.vue";
 const slides = [
   {
     component: ProductCard,
-    props: { src: "modelo1.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "sdshfghgfhd-asd",
+      imageSrc: "modelo1.png",
+      productName: "Camisa Cyberpunk Roxa",
+      price: 39.9,
+    },
   },
   {
     component: ProductCard,
-    props: { src: "modelo2.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "sdsaghffghfhd-asd",
+      productName: "Camisa Cyberpunk Roxa",
+      imageSrc: "modelo2.png",
+      price: 39.9,
+    },
   },
   {
     component: ProductCard,
-    props: { src: "modelo3.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "sdscfr324d-asd",
+      imageSrc: "modelo3.png",
+      productName: "Camisa Cyberpunk Roxa",
+      price: 39.9,
+    },
   },
   {
     component: ProductCard,
-    props: { src: "modelo4.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "sdujuj7ud-asd",
+      imageSrc: "modelo4.png",
+      productName: "Camisa Cyberpunk Roxa",
+      price: 39.9,
+    },
   },
   {
     component: ProductCard,
-    props: { src: "modelo1.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "svnmfgasd-asd",
+      imageSrc: "modelo1.png",
+      productName: "Camisa Cyberpunk Roxa",
+      price: 39.9,
+    },
   },
   {
     component: ProductCard,
-    props: { src: "modelo2.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "sd893vgdasd-asd",
+      imageSrc: "modelo2.png",
+      productName: "Camisa Cyberpunk Roxa",
+      price: 39.9,
+    },
   },
   {
     component: ProductCard,
-    props: { src: "modelo3.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "sdsdsdfsaad-asd",
+      imageSrc: "modelo3.png",
+      productName: "Camisa Cyberpunk Roxa",
+      price: 39.9,
+    },
   },
   {
     component: ProductCard,
-    props: { src: "modelo4.png", name: "Camisa Cyberpunk Roxa", price: 39.9 },
+    props: {
+      id: "sdnxcei5asd-asd",
+      imageSrc: "modelo4.png",
+      productName: "Camisa Cyberpunk Roxa",
+      price: 39.9,
+    },
   },
 ];
 </script>
