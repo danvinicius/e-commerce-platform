@@ -40,9 +40,13 @@ defineProps({
         gap: 3rem;
     }
 
-    img {
-        max-width: 100%;
-        max-height: 250px;
+    .image-container {
+        flex-basis: 400px;        
+
+        img {
+            max-width: 100%;
+            max-height: 250px;
+        }
     }
 }
 </style>

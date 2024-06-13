@@ -1,13 +1,13 @@
 <template>
     <section class="products-recomendation">
         <ProductAd
-            title="Lorem ipsum dolor sit amet<br> consectetur adipisicing elit."
+            title="Lorem ipsum dolor sit amet consectetur adipisicing elit."
             image="modelo1.png"
             background="var(--primary-color)"
             color="#fff"
         />
         <ProductAd
-            title="Lorem ipsum dolor sit amet<br> consectetur adipisicing elit."
+            title="Lorem ipsum dolor sit amet consectetur adipisicing elit."
             image="modelo2.png"
             background="var(--secondary-color)"
             color="#fff"
