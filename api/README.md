@@ -5,9 +5,7 @@
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
-This project is an API built using **Java, Java Spring, PostgresSQL as the database, Feign Client, Flyway Migrations and Spring Security with JWT for authentication control.**
-
-The aim of this project is to practice Java and Spring Framework with authentication, microservices and testing concepts.
+This API was built using **Java, Java Spring, PostgresSQL as the database, Feign Client, Flyway Migrations and Spring Security with JWT for authentication control.**
 
 <h4> 
     🚧 Under development 🚧
