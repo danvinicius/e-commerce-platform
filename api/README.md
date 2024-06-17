@@ -25,7 +25,9 @@ This API was built using **Java, Java Spring, PostgresSQL as the database, Feign
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/danvinicius/e-commerce-platform-api.git
+git clone https://github.com/danvinicius/e-commerce-platform.git
+
+cd api/
 ```
 
 2. Install dependencies with Maven
