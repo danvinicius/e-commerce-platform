@@ -1,21 +1,10 @@
 <template>
-  <section class="signup-form flex column gap-125">
+  <section class="admin-login-form flex column gap-125">
     <div class="title">
-      <h1>Sign Up</h1>
-      <p class="signup">
-        Already have an account?
-        <span @click="changeToLogin" class="pointer">Login</span>
-      </p>
+      <h1>Admin login</h1>
+      <p class="authorized">Only for <span>authorized</span> people.</p>
     </div>
     <Form>
-      <Input
-        type="name"
-        name="name"
-        placeholder="your name"
-        label="Name"
-        :value="name"
-        @update:value="(value) => (name = value)"
-      />
       <Input
         type="email"
         name="email"
@@ -24,26 +13,21 @@
         :value="email"
         @update:value="(value) => (email = value)"
       />
-      <Input
-        type="phone"
-        name="phone"
-        placeholder="(xx) xxxxx-xxxx"
-        label="Phone"
-        :value="phone"
-        @update:value="(value) => (phone = value)"
-      />
       <PasswordInput
+        type="password"
+        name="password"
         placeholder="*********"
         label="Password"
         :value="password"
+        @changeToForgotPassword="changeToForgotPassword"
         @update:value="(value) => (password = value)"
         :enableForgotPassword="false"
       />
       <Button
         text="Login"
-        background="var(--primary-color)"
+        background="var(--secondary-text-color)"
         :border="'none'"
-        @click.prevent="handleSignup"
+        @click.prevent="handleLogin"
       ></Button>
     </Form>
   </section>
@@ -53,39 +37,20 @@
 import Button from "../layout/Button.vue";
 import Input from "../form/Input.vue";
 import Form from "../form/Form.vue";
-import { ref } from "vue";
 import useLogin from "../../composables/useLogin";
+const { authenticate } = useLogin();
+import { ref } from "vue";
 import PasswordInput from "../form/PasswordInput.vue";
-const { create } = useLogin();
 
-const name = ref("");
-const phone = ref("");
 const email = ref("");
 const password = ref("");
 
-defineProps({
-  currentView: String,
-});
-
-const emit = defineEmits(["update:currentView"]);
-
-const changeToLogin = () => {
-  emit("update:currentView", "login");
-};
-
-const handleSignup = async () => {
-  if (
-    email.value.length &&
-    password.value.length &&
-    phone.value.length &&
-    name.value.length
-  ) {
+const handleLogin = async (event: any) => {
+  if (email.value.length && password.value.length) {
     try {
-      const data = await create({
+      const data = await authenticate({
         email: email.value,
         password: password.value,
-        phone: phone.value,
-        name: name.value,
       });
       return data;
     } catch (error) {
@@ -96,12 +61,10 @@ const handleSignup = async () => {
 </script>
   
   <style scoped lang="scss">
-.signup-form {
-  width: 80%;
+.admin-login-form {
   background: #fff;
-  padding: 2rem 0 2rem 10rem;
   margin: auto;
-  position: relative;
+  width: 100%;
 
   h1 {
     font-size: 2rem;
@@ -109,7 +72,7 @@ const handleSignup = async () => {
     color: var(--primary-text-color);
   }
 
-  p.signup {
+  p.authorized {
     color: var(--secondary-text-color);
 
     span {

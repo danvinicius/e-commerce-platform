@@ -1,6 +1,9 @@
 <template>
   <div class="password-input-wrapper">
-    <small class="secondary-text-color pointer" @click="changeToForgotPassword"
+    <small
+      v-if="enableForgotPassword"
+      class="secondary-text-color pointer"
+      @click="changeToForgotPassword"
       >Forgot password?</small
     >
     <Input

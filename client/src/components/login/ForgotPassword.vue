@@ -65,8 +65,7 @@ const handleForgotPassword = async (event: any) => {
 .forgot-password-form {
   width: 80%;
   background: #fff;
-  padding: 2rem;
-  padding-right: 0;
+  padding: 2rem 0 2rem 10rem;
   margin: auto;
   position: relative;
 

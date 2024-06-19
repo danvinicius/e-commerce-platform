@@ -18,6 +18,7 @@ import LoginButton from "./LoginButton.vue";
 
 <style scoped lang="scss">
 header {
+  position: relative;
   padding: 0.5rem 0;
   box-shadow: 1px 1px 5px #aaa;
 }
