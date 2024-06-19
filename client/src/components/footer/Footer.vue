@@ -72,7 +72,7 @@ const year = ref(new Date().getFullYear());
 
 <style scoped lang="scss">
 footer {
-  background: #f2f5ff;
+  background: var(--quaternary-color);
   padding: 1.5rem 0;
 
   a {

@@ -9,7 +9,18 @@ export const useFetch = () => {
   const get = async (url: string, token?: string) => {
     try {
       const response = await api.get(url, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      return response.data;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const post = async (url: string, data: any, token?: string) => {
+    try {
+      const response = await api.post(url, data, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       return response.data;
     } catch (error) {
@@ -19,5 +30,6 @@ export const useFetch = () => {
 
   return {
     get,
+    post
   };
 };

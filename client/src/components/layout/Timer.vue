@@ -71,7 +71,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .timer {
-  background: #f2f5ff;
+  background: var(--quaternary-color);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 

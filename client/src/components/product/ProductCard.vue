@@ -1,7 +1,7 @@
 <template>
   <router-link
     :to="productLink"
-    class="product-card text-color decoration-none"
+    class="product-card primary-text-color decoration-none"
   >
     <div
       class="image-container flex justify-center"
@@ -49,7 +49,7 @@ const productLink = `/product/${slugify(props.name + "-" + props.id)}`;
 .product-card {
   .image-container {
     height: 300px;
-    background: #f2f5ff;
+    background: var(--quaternary-color);
     img {
       max-width: 100%;
       max-height: 100%;

@@ -1,18 +1,20 @@
 <template>
-  <nav class="text-color">
+  <nav class="primary-text-color">
     <ul class="flex align-center justify-center">
       <li>
-        <router-link to="/categories" class="text-color decoration-none"
+        <router-link to="/categories" class="primary-text-color decoration-none"
           >Our Categories</router-link
         >
       </li>
       <li>
-        <router-link to="/products" class="text-color decoration-none"
+        <router-link to="/products" class="primary-text-color decoration-none"
           >Our New Arrival</router-link
         >
       </li>
       <li>
-        <router-link to="/category/anime" class="text-color decoration-none"
+        <router-link
+          to="/category/anime"
+          class="primary-text-color decoration-none"
           >Anime</router-link
         >
       </li>

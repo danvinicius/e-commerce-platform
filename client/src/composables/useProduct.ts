@@ -26,8 +26,6 @@ interface BannerProductRequest extends Omit<BannerProduct, 'imageUrl'> {
     image_url: string;
 }
 
-
-
 const recommendedProducts: RecommendedProductRequest[] = [
   {
     id: "dsfsdf-34345-dsfsdf",

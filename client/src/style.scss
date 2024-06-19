@@ -5,9 +5,16 @@
   --primary-color: #0066ff;
   --secondary-color: #0abdc6;
   --tertiary-color: #ea00d9;
-  --text-color: #091833;
+  --quaternary-color: #f2f5ff;
+  --primary-text-color: #091833;
+  --secondary-text-color: #6d6d6d;
   font-family: "Inter", Helvetica, sans-serif;
 }
+
+button, a, span {
+  user-select: none;
+}
+
 .container {
   max-width: 65%;
   margin: 0 auto;
@@ -74,6 +81,10 @@ a {
   gap: 1rem;
 }
 
+.gap-125 {
+  gap: 1.25rem;
+}
+
 .gap-15 {
   gap: 1.5rem;
 }
@@ -103,8 +114,11 @@ a {
 .bg-tertiary {
   background: var(--tertiary-color);
 }
-.text-color {
-  color: var(--text-color);
+.primary-text-color {
+  color: var(--primary-text-color);
+}
+.secondary-text-color {
+  color: var(--secondary-text-color);
 }
 
 .decoration-none {

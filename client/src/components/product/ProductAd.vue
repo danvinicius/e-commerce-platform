@@ -6,7 +6,7 @@
         <Button
           text="Buy now"
           background="#fff"
-          color="var(--text-color)"
+          color="var(--primary-text-color)"
           :border="'1px solid #fff'"
         ></Button>
       </router-link>
@@ -52,6 +52,10 @@ const productLink = `/product/${slugify(props.name + "-" + props.id)}`;
 
   .content-container {
     gap: 3rem;
+
+    h3 {
+      color: #fff;
+    }
   }
 
   .image-container {

@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <div class="container">
+  <div class="home container">
     <Banner></Banner>
     <ContentSwiper
       v-if="bestSellingProducts.length"
@@ -40,4 +40,8 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.home {
+  padding-top: 1rem;
+}
+</style>

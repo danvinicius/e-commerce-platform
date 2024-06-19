@@ -40,11 +40,7 @@ const productLink = `/product/${slugify(
 
 <style scoped lang="scss">
 .banner {
-  background-image: linear-gradient(
-    20deg,
-    var(--tertiary-color),
-    var(--primary-color) 80%
-  );
+  background: var(--primary-color);
   padding: 3rem 2rem 2rem;
   border-radius: 0.5rem 0.5rem 9rem 0.5rem;
   margin: 0 0 4rem;
