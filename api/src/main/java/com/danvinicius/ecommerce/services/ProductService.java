@@ -9,7 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.danvinicius.ecommerce.dto.product.ProductRequestDTO;
+import com.danvinicius.ecommerce.dto.product.CreateProductRequestDTO;
+import com.danvinicius.ecommerce.dto.product.UpdateProductRequestDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
 import com.danvinicius.ecommerce.entities.product.Product;
 import com.danvinicius.ecommerce.exceptions.ResourceNotFoundException;
@@ -39,15 +40,33 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product createProduct(ProductRequestDTO data) {
+    public Product createProduct(CreateProductRequestDTO data) {
         Product product = new Product(data);
-        Category category = categoryService.getCategoryById(data.categoryId());
-        product.setCategory(category);
+        List<Category> categories = categoryService.getCategoriesById(data.categoriesIds());
+        for (Category category: categories) {
+            product.getCategories().add(category);
+        }
         productRepository.save(product);
         return product;
     }
 
-    public Product updateProduct(String id, ProductRequestDTO data) {
+    public Product addCategoryToProduct(String productId, String categoryId) {
+        Product product = getProductById(productId);
+        Category category = categoryService.getCategoryById(categoryId);
+        product.getCategories().add(category);
+        productRepository.save(product);
+        return product;
+    }
+
+    public Product removeCategoryFromProduct(String productId, String categoryId) {
+        Product product = getProductById(productId);
+        Category category = categoryService.getCategoryById(categoryId);
+        product.getCategories().remove(category);
+        productRepository.save(product);
+        return product;
+    }
+
+    public Product updateProduct(String id, UpdateProductRequestDTO data) {
         Product product = getProductById(id);
         if (data.name() != null && !data.name().isEmpty()) {
             product.setName(data.name());
@@ -63,10 +82,6 @@ public class ProductService {
         }
         if (data.quantity() != null) {
             product.setQuantity(data.quantity());
-        }
-        if (data.categoryId() != null && !data.categoryId().isEmpty()) {
-            Category category = categoryService.getCategoryById(data.categoryId());
-            product.setCategory(category);
         }
         productRepository.save(product);
         return product;

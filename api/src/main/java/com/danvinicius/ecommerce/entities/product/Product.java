@@ -10,7 +10,7 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.danvinicius.ecommerce.dto.product.ProductRequestDTO;
+import com.danvinicius.ecommerce.dto.product.CreateProductRequestDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
 import com.danvinicius.ecommerce.entities.order.OrderItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +22,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -59,9 +60,10 @@ public class Product implements Serializable {
     @JsonIgnore
     private Set<OrderItem> items = new HashSet<OrderItem>();
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JsonIgnore
+    private Set<Category> categories = new HashSet<>();
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -71,7 +73,7 @@ public class Product implements Serializable {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    public Product(ProductRequestDTO data) {
+    public Product(CreateProductRequestDTO data) {
         this.name = data.name();
         this.description = data.description();
         this.imageUrl = data.imageUrl();
@@ -82,7 +84,7 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-                + ", quantity=" + quantity + ", category=" + category + "]";
+                + ", quantity=" + quantity + ", categories=" + categories + "]";
     }
 
     

@@ -1,6 +1,7 @@
 package com.danvinicius.ecommerce.services;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class CategoryService {
 
     public Category getCategoryById(String id) throws ResourceNotFoundException {
         return categoryRepository.findById(UUID.fromString(id)).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    public List<Category> getCategoriesById(Set<String> categoriesIds) throws ResourceNotFoundException {
+        return categoryRepository.findAllById(categoriesIds.stream().map(id -> UUID.fromString(id)).toList());
     }
 
       public List<Category> getAllCategories() {
