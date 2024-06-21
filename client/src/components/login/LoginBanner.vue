@@ -1,6 +1,9 @@
 <template>
   <section class="login-banner">
-    <img src="../../assets/img/online-shopping.svg" alt="" />
+    <img
+      src="../../assets/img/online-shopping.svg"
+      alt="Login banner image: Woman accessing e-commerce on mobile"
+    />
     <div class="content">
       <h2>Welcome!</h2>
       <p>

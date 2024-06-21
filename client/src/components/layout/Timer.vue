@@ -76,8 +76,8 @@ onMounted(() => {
   border-radius: 0.5rem;
 
   & > div {
-    padding: 0.5rem;
-    width: 3rem;
+    padding: 0.5rem 1rem;
+    width: 3.5rem;
 
     p:first-child {
       font-size: 0.75rem;

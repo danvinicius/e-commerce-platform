@@ -7,7 +7,7 @@
       class="image-container flex justify-center"
       :style="{ background: imageBackground, height }"
     >
-      <img :src="getimageUrl(imageUrl)" :alt="name" :title="name" />
+      <img :src="getImageUrl(imageUrl)" :alt="name" :title="name" />
     </div>
     <div
       class="content-container flex column gap-5"
@@ -20,8 +20,8 @@
 </template>
   
   <script setup lang="ts">
-import { useHelpers } from "../../composables/useHelpers";
-const { getimageUrl, slugify } = useHelpers();
+import useHelpers from "../../composables/useHelpers";
+const { getImageUrl, slugify } = useHelpers();
 const props = defineProps({
   id: {
     required: true,

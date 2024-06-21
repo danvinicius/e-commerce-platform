@@ -18,14 +18,14 @@
       v-if="type == 'password'"
       class="pointer"
       src="../../assets/icon/Eye_Off.svg"
-      alt=""
+      alt="Turn password visible"
       @click="type = 'text'"
     />
     <img
       v-if="type == 'text'"
       class="pointer"
       src="../../assets/icon/Eye.svg"
-      alt=""
+      alt="Turn password invisible"
       @click="type = 'password'"
     />
   </div>

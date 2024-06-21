@@ -19,9 +19,9 @@
 <script setup lang="ts">
 import { Product } from "../../composables/useProduct";
 import Timer from "../layout/Timer.vue";
-import ContentSwiper from "../main/ContentSwiper.vue";
+import ContentSwiper from "../home/ContentSwiper.vue";
 
-import { useProduct } from "../../composables/useProduct";
+import useProduct from "../../composables/useProduct";
 
 const { getOnSaleProducts } = useProduct();
 import { onMounted, ref } from "vue";
@@ -34,9 +34,8 @@ onMounted(async () => {
 
 defineProps({
   title: String,
+  saleDeadline: Date,
 });
-
-const saleDeadline = new Date("2024-06-20T12:00:00");
 </script>
 
 <style scoped lang="scss">

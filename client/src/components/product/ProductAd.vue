@@ -12,14 +12,14 @@
       </router-link>
     </div>
     <router-link class="image-container" :to="productLink">
-      <img :src="getimageUrl(imageUrl)" :alt="name" :title="name" />
+      <img :src="getImageUrl(imageUrl)" :alt="name" :title="name" />
     </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useHelpers } from "../../composables/useHelpers";
-const { getimageUrl, slugify } = useHelpers();
+import useHelpers from "../../composables/useHelpers";
+const { getImageUrl, slugify } = useHelpers();
 import Button from "../layout/Button.vue";
 
 const props = defineProps({

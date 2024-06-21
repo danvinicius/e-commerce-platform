@@ -1,10 +1,10 @@
 export interface Product {
-    id: string,
-    imageUrl: string,
-    quantity: Number,
-    name: string,
-    description: string,
-    price: number,
+  id: string;
+  imageUrl: string;
+  quantity: Number;
+  name: string;
+  description: string;
+  price: number;
 }
 
 export interface BannerProduct extends Product {
@@ -16,19 +16,20 @@ export interface RecommendedProduct extends Product {
   title: string;
 }
 
-interface ProductRequest extends Omit<Product, 'imageUrl'> {
-    image_url: string;
+interface ProductRequest extends Omit<Product, "imageUrl"> {
+  image_url: string;
 }
-interface RecommendedProductRequest extends Omit<RecommendedProduct, 'imageUrl'> {
-    image_url: string;
+interface RecommendedProductRequest
+  extends Omit<RecommendedProduct, "imageUrl"> {
+  image_url: string;
 }
-interface BannerProductRequest extends Omit<BannerProduct, 'imageUrl'> {
-    image_url: string;
+interface BannerProductRequest extends Omit<BannerProduct, "imageUrl"> {
+  image_url: string;
 }
 
 const recommendedProducts: RecommendedProductRequest[] = [
   {
-    id: "dsfsdf-34345-dsfsdf",
+    id: "123e4567-e89b-12d3-a456-426614174000",
     image_url: "modelo1.png",
     quantity: 8,
     name: "Camisa Cyberpunk Roxa",
@@ -37,7 +38,7 @@ const recommendedProducts: RecommendedProductRequest[] = [
     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
   },
   {
-    id: "dsfsdf-34345-dsfsdf",
+    id: "123e4567-e89b-12d3-a456-426614174001",
     image_url: "modelo2.png",
     quantity: 8,
     name: "Camisa Cyberpunk Amarela",
@@ -48,7 +49,7 @@ const recommendedProducts: RecommendedProductRequest[] = [
 ];
 
 const bannerProduct: BannerProductRequest = {
-  id: "qweqweqwe-asd",
+  id: "123e4567-e89b-12d3-a456-426614174002",
   image_url: "modelo-banner.png",
   quantity: 8,
   name: "Camisa Cyberpunk Roxa",
@@ -61,7 +62,7 @@ const bannerProduct: BannerProductRequest = {
 
 const products: ProductRequest[] = [
   {
-    id: "sdshfghgfhd-asd",
+    id: "123e4567-e89b-12d3-a456-426614174003",
     image_url: "modelo1.png",
     quantity: 10,
     name: "Camisa Cyberpunk Roxa",
@@ -69,7 +70,7 @@ const products: ProductRequest[] = [
     price: 39.9,
   },
   {
-    id: "sdscfr324d-asd",
+    id: "123e4567-e89b-12d3-a456-426614174004",
     image_url: "modelo3.png",
     quantity: 10,
     name: "Camisa Cyberpunk Roxa",
@@ -77,15 +78,18 @@ const products: ProductRequest[] = [
     price: 39.9,
   },
   {
-    id: "sdujuj7ud-asd",
+    id: "123e4567-e89b-12d3-a456-426614174005",
     image_url: "modelo4.png",
     quantity: 10,
     name: "Camisa Cyberpunk Roxa",
-    description: "Camisa Cyberpunk Roxa",
+    description: "Lorem ipsum dolor sit amet consectetur,"+
+    "adipisicing elit. Qui voluptas quae recusandae itaque consequatur reiciendis,"+
+    "eaque voluptate accusantium neque similique aut quam sunt eos"+
+    "beatae vero laborum, adipisci saepe ducimus.",
     price: 39.9,
   },
   {
-    id: "svnmfgasd-asd",
+    id: "123e4567-e89b-12d3-a456-426614174006",
     image_url: "modelo1.png",
     quantity: 10,
     name: "Camisa Cyberpunk Roxa",
@@ -93,7 +97,7 @@ const products: ProductRequest[] = [
     price: 39.9,
   },
   {
-    id: "sd893vgdasd-asd",
+    id: "123e4567-e89b-12d3-a456-426614174007",
     image_url: "modelo2.png",
     quantity: 10,
     name: "Camisa Cyberpunk Roxa",
@@ -101,7 +105,7 @@ const products: ProductRequest[] = [
     price: 39.9,
   },
   {
-    id: "sdsdsdfsaad-asd",
+    id: "123e4567-e89b-12d3-a456-426614174008",
     image_url: "modelo3.png",
     quantity: 10,
     name: "Camisa Cyberpunk Roxa",
@@ -109,7 +113,7 @@ const products: ProductRequest[] = [
     price: 39.9,
   },
   {
-    id: "sdnxcei5asd-asd",
+    id: "123e4567-e89b-12d3-a456-426614174009",
     image_url: "modelo4.png",
     quantity: 10,
     name: "Camisa Cyberpunk Roxa",
@@ -118,46 +122,79 @@ const products: ProductRequest[] = [
   },
 ];
 
-export const useProduct = () => {
+const useProduct = () => {
   const getAllProducts = async (): Promise<Product[]> => {
     return new Promise((res, rej) => {
-        res(products.map((product: ProductRequest) => ({
-            ...product,
-            imageUrl: product.image_url
-        })))
+      res(
+        products.map((product: ProductRequest) => ({
+          ...product,
+          imageUrl: product.image_url,
+        }))
+      );
     });
   };
   const getBestSellingProducts = async (): Promise<Product[]> => {
     return new Promise((res, rej) => {
-        res(products.map((product: ProductRequest) => ({
-            ...product,
-            imageUrl: product.image_url
-        })))
+      res(
+        products.map((product: ProductRequest) => ({
+          ...product,
+          imageUrl: product.image_url,
+        }))
+      );
     });
   };
   const getOnSaleProducts = async (): Promise<Product[]> => {
     return new Promise((res, rej) => {
-        res(products.map((product: ProductRequest) => ({
-            ...product,
-            imageUrl: product.image_url
-        })))
+      res(
+        products.map((product: ProductRequest) => ({
+          ...product,
+          imageUrl: product.image_url,
+        }))
+      );
     });
   };
   const getBannerProduct = async (): Promise<BannerProduct> => {
     return new Promise((res, rej) => {
-        res({
-          ...bannerProduct,
-          imageUrl: bannerProduct.image_url
-        })
+      res({
+        ...bannerProduct,
+        imageUrl: bannerProduct.image_url,
+      });
     });
   };
   const getRecommendedProduct = async (): Promise<RecommendedProduct[]> => {
     return new Promise((res, rej) => {
-        res(recommendedProducts.map((recommendedProduct: RecommendedProductRequest) => ({
+      res(
+        recommendedProducts.map(
+          (recommendedProduct: RecommendedProductRequest) => ({
             ...recommendedProduct,
-            imageUrl: recommendedProduct.image_url
-        })))
+            imageUrl: recommendedProduct.image_url,
+          })
+        )
+      );
     });
+  };
+  const getProductBySlug = async (slug: string): Promise<Product | null> => {
+    const uuidPattern =
+      /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
+    const match = slug.match(uuidPattern);
+    if (match) {
+      const uuid = match[0];
+      
+      const product = [...products, ...recommendedProducts, bannerProduct].find(
+        (product: ProductRequest) => product.id == uuid
+      );
+
+      if (product) {
+        return new Promise((res, rej) => {
+          res({
+            ...product,
+            imageUrl: product.image_url,
+          });
+        });
+      }
+    }
+
+    return null;
   };
 
   return {
@@ -165,6 +202,9 @@ export const useProduct = () => {
     getBannerProduct,
     getOnSaleProducts,
     getBestSellingProducts,
-    getRecommendedProduct
+    getRecommendedProduct,
+    getProductBySlug,
   };
 };
+
+export default useProduct;

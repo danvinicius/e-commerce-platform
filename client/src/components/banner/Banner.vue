@@ -8,7 +8,7 @@
     <div class="image-container relative">
       <router-link :to="productLink">
         <img
-          :src="getimageUrl(bannerProduct.imageUrl)"
+          :src="getImageUrl(bannerProduct.imageUrl)"
           :alt="bannerProduct.name"
           :title="bannerProduct.name"
         />
@@ -19,23 +19,24 @@
 
 <script setup lang="ts">
 import BannerButton from "./BannerButton.vue";
-import { useHelpers } from "../../composables/useHelpers";
-const { getimageUrl, slugify } = useHelpers();
+import useHelpers from "../../composables/useHelpers";
+const { getImageUrl, slugify } = useHelpers();
 
-import { useProduct } from "../../composables/useProduct";
+import useProduct from "../../composables/useProduct";
 
 const { getBannerProduct } = useProduct();
 import { onMounted, ref } from "vue";
 
 const bannerProduct = ref([]);
+const productLink = ref();
 
 onMounted(async () => {
   bannerProduct.value = await getBannerProduct();
-});
 
-const productLink = `/product/${slugify(
-  bannerProduct.name + "-" + bannerProduct.id
-)}`;
+  productLink.value = `/product/${slugify(
+    bannerProduct.value.name + "-" + bannerProduct.value.id
+  )}`;
+});
 </script>
 
 <style scoped lang="scss">

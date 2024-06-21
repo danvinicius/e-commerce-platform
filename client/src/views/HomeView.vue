@@ -8,7 +8,11 @@
       :products="bestSellingProducts"
     ></ContentSwiper>
     <ProductsRecommendation></ProductsRecommendation>
-    <OnSale title="15% off anime<br>clothing promotion"></OnSale>
+    <OnSale
+      v-if="saleDeadline.getTime() > new Date().getTime()"
+      title="20% off anime<br>clothing promotion"
+      :saleDeadline="saleDeadline"
+    ></OnSale>
     <ContentSwiper
       v-if="newArrivalProducts.length"
       title="New Arrival"
@@ -23,16 +27,17 @@
 import Banner from "../components/banner/Banner.vue";
 import Header from "../components/header/Header.vue";
 import Footer from "../components/footer/Footer.vue";
-import ContentSwiper from "../components/main/ContentSwiper.vue";
-import ProductsRecommendation from "../components/main/ProductsRecommendation.vue";
-import OnSale from "../components/main/OnSale.vue";
+import ContentSwiper from "../components/home/ContentSwiper.vue";
+import ProductsRecommendation from "../components/home/ProductsRecommendation.vue";
+import OnSale from "../components/home/OnSale.vue";
 
-import { useProduct } from "../composables/useProduct";
+import useProduct from "../composables/useProduct";
 const { getAllProducts, getBestSellingProducts } = useProduct();
 import { onMounted, ref } from "vue";
 
 const newArrivalProducts = ref([]);
 const bestSellingProducts = ref([]);
+const saleDeadline = new Date("2024-07-31T12:00:00");
 
 onMounted(async () => {
   newArrivalProducts.value = await getAllProducts();

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { useHelpers } from "../../composables/useHelpers";
+import useHelpers from "../../composables/useHelpers";
 const { slugify } = useHelpers();
 
 const emit = defineEmits(["update:value"]);
@@ -31,6 +31,10 @@ defineProps({
   },
   type: String,
   placeholder: String,
+  border: {
+    type: String,
+    default: "1px solid var(--primary-color)",
+  },
 });
 </script>
 
@@ -48,7 +52,7 @@ label {
     padding: 0.75rem 1rem;
 
     &:focus {
-      border: 1px solid var(--primary-color);
+      border: v-bind("border");
     }
   }
 }

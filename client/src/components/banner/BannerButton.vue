@@ -12,7 +12,7 @@
 import Button from "../layout/Button.vue";
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 button {
   max-width: initial;
 }

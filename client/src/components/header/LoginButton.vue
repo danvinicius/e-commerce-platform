@@ -1,5 +1,5 @@
 <template>
-  <router-link to="login">
+  <router-link to="/login">
     <Button
       text="Sign in / Sign up"
       background="#fff"
@@ -13,5 +13,5 @@
 import Button from "../layout/Button.vue";
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 </style>

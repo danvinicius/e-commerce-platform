@@ -6,7 +6,7 @@
       :imageUrl="product.imageUrl"
       :id="product.id"
       :name="product.name"
-      background="var(--primary-color)"
+      background="var(--secondary-color)"
       color="#fff"
       :key="product.id"
     />
@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 import ProductAd from "../product/ProductAd.vue";
-import { useProduct } from "../../composables/useProduct";
+import useProduct from "../../composables/useProduct";
 
 const { getRecommendedProduct } = useProduct();
 import { onMounted, ref } from "vue";

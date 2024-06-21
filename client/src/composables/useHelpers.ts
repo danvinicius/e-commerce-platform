@@ -1,6 +1,10 @@
-export const useHelpers = () => {
-  const getimageUrl = (name: string) => {
+const useHelpers = () => {
+  const getImageUrl = (name: string) => {
     return new URL(`../assets/img/${name}`, import.meta.url).href;
+  };
+
+  const getIconUrl = (name: string) => {
+    return new URL(`../assets/icon/${name}`, import.meta.url).href;
   };
 
   const slugify = (str: string) => {
@@ -13,8 +17,23 @@ export const useHelpers = () => {
     return str;
   };
 
+  const priceFormatter = (price: number, withStyle: boolean, locale = 'pt-br') => {
+    const options: Intl.NumberFormatOptions = {
+      currency: 'BRL',
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2
+    }
+    if (withStyle) options.style = 'currency';
+    const formattedPrice = price.toLocaleString(locale, options)
+    return formattedPrice;
+  }
+
   return {
-    getimageUrl,
-    slugify
+    getImageUrl,
+    slugify,
+    priceFormatter,
+    getIconUrl
   };
 };
+
+export default useHelpers;

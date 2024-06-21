@@ -5,7 +5,7 @@ const api = axios.create({
   timeout: 15000,
 });
 
-export const useFetch = () => {
+const useFetch = () => {
   const get = async (url: string, token?: string) => {
     try {
       const response = await api.get(url, {
@@ -33,3 +33,5 @@ export const useFetch = () => {
     post
   };
 };
+
+export default useFetch
