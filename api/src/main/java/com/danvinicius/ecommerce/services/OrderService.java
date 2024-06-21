@@ -30,9 +30,6 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private OrderItemRepository orderItemRepository;
-
-    @Autowired
     private AddressService shippingAddressService;
 
     @Autowired
@@ -43,6 +40,9 @@ public class OrderService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     private User user() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

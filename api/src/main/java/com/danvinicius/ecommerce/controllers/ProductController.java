@@ -45,6 +45,14 @@ public class ProductController {
                 .toList());
     }
 
+    @GetMapping("/best-selling")
+    public ResponseEntity<List<ProductDTO>> getBestSellingProducts(Pageable pageable) {
+        List<Product> products = productService
+                .getBestSellingProducts(pageable);
+        return ResponseEntity.ok().body(products.stream().map(ProductDTO::new)
+                .toList());
+    }
+
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody CreateProductRequestDTO data) {
         Product product = productService.createProduct(data);

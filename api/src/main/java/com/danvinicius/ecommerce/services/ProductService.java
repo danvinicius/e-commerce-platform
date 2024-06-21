@@ -1,9 +1,11 @@
 package com.danvinicius.ecommerce.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,6 +26,9 @@ public class ProductService {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private OrderItemService orderItemService;
+
     public Product getProductById(String id) throws ResourceNotFoundException {
         return productRepository.findById(UUID.fromString(id)).orElseThrow(ResourceNotFoundException::new);
     }
@@ -34,6 +39,17 @@ public class ProductService {
             .withSort(Sort.by("updatedAt")
             .reverse()))
             .getContent();
+    }
+
+    public List<Product> getBestSellingProducts(Pageable pageable) {
+        Page<Object[]> results = orderItemService.getBestSellingProducts(pageable);
+
+        List<Product> bestSellingProducts = new ArrayList<Product>();
+        for (Object[] result : results) {
+            UUID productId = (UUID) result[0];
+            bestSellingProducts.add(this.getProductById(productId.toString()));
+        }
+        return bestSellingProducts;
     }
 
     public Product saveProduct(Product product) {
