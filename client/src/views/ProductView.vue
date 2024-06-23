@@ -1,8 +1,8 @@
 <template>
   <Header></Header>
   <div class="product">
-    <div class="container">
-      <div class="main flex" v-if="product">
+    <div class="container" v-if="product">
+      <div class="main flex">
         <div class="product-image-wrapper">
           <ProductImage :imageUrl="product.imageUrl"></ProductImage>
         </div>
@@ -10,6 +10,7 @@
           <ProductInfo :product="product"></ProductInfo>
         </div>
       </div>
+      <ProductDetails :product="product"></ProductDetails>
     </div>
   </div>
   <Footer></Footer>
@@ -20,6 +21,7 @@ import Header from "../components/header/Header.vue";
 import Footer from "../components/footer/Footer.vue";
 import ProductImage from "../components/product/ProductImage.vue";
 import ProductInfo from "../components/product/ProductInfo.vue";
+import ProductDetails from "../components/product/ProductDetails.vue";
 
 import useProduct from "../composables/useProduct";
 import { useRoute } from "vue-router";
@@ -41,6 +43,10 @@ onMounted(async () => {
 .product {
   color: var(--primary-text-color);
   padding: 2rem 0 4rem;
+  .main {
+    flex-wrap: wrap;
+    margin-bottom: 5rem;
+  }
   .product-image-wrapper {
     min-width: 50%;
   }

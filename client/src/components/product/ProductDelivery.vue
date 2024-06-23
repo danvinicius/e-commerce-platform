@@ -16,6 +16,11 @@
         @click.prevent="handleGetDeliveryInfo"
       ></Button>
     </div>
+    <a
+      href="https://buscacepinter.correios.com.br/app/endereco/"
+      target="_blank"
+      >Don't know my CEP</a
+    >
     <table v-if="deliveryInfo">
       <tr>
         <td>
@@ -62,7 +67,18 @@ h3 {
 }
 
 .flex {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+
+  a {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: (var(--primary-color));
+  }
+
+  table {
+    margin-bottom: 0.5rem;
+  }
 
   table,
   tr,
