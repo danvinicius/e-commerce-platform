@@ -1,10 +1,8 @@
-package com.danvinicius.ecommerce.entities.order;
+package com.danvinicius.ecommerce.entities.product;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.UUID;
 
-import com.danvinicius.ecommerce.entities.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -20,36 +18,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "tb_order_item")
 @Entity
+@Table(name = "tb_product_size")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class OrderItem implements Serializable {
+@NoArgsConstructor
+@EqualsAndHashCode(of = "size")
+public class ProductSize implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
-    
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    @JsonIgnore
-    private Order order;
-    
+
+    private String size;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private Product product;
-
-    private Integer quantity;
-
-    private BigDecimal price;
-
-    @Override
-    public String toString() {
-        return "OrderItem [id=" + id + ", product=" + product + ", quantity=" + quantity + ", price=" + price + "]";
-    }
-
 }

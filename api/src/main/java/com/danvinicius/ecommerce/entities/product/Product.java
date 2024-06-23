@@ -54,7 +54,16 @@ public class Product implements Serializable {
 
     private BigDecimal price;
 
+    private Double weight;
+
     private Integer quantity;
+
+    private Boolean recommendedOnMainPage;
+
+    private Double discount; // %
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<ProductSize> productSizes = new HashSet<ProductSize>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonIgnore

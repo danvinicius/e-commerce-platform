@@ -12,6 +12,10 @@ public record CreateProductRequestDTO(
     String imageUrl,
     @NotNull BigDecimal price,
     @NotNull Integer quantity,
-    Set<String> categoriesIds
+    Set<String> categoriesIds,
+    Set<String> productSizes,
+    Boolean recommendedOnMainPage,
+    BigDecimal weight,
+    Double discount
     ) {
 }

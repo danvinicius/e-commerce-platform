@@ -42,6 +42,8 @@ public class Category implements Serializable {
 
     private String name;
 
+    private Double discount; // %
+
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<Product>();
 

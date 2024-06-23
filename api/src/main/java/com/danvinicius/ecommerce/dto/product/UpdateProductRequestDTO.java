@@ -10,7 +10,10 @@ public record UpdateProductRequestDTO(
     @NotBlank String description,
     String imageUrl,
     @NotNull BigDecimal price,
-    @NotNull Integer quantity
+    @NotNull Integer quantity,
+    Boolean recommendedOnMainPage,
+    Double weight,
+    Double discount
 ) {
     
 }

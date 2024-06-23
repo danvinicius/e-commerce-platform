@@ -40,6 +40,9 @@ public class CategoryService {
         if (data.name() != null && !data.name().isEmpty()) {
             category.setName(data.name());
         }
+        if (data.discount() != null && data.discount() > 0.0) {
+            category.setDiscount(data.discount());
+        }
         categoryRepository.save(category);
         return category;
     }
