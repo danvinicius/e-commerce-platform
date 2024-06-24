@@ -2,17 +2,18 @@ import useFetch from "./useFetch";
 
 const {get} = useFetch()
 
+export interface ProductStock {
+  [key: string]: string;
+}
+
 export interface Product {
   id: string;
   imageUrl: string;
-  quantity: number;
   name: string;
   description: string;
   price: number;
   recommendedOnMainPage?: boolean;
-  productSizes: {
-    size: string;
-  }[]
+  stock: ProductStock
 }
 
 export interface BannerProduct extends Product {

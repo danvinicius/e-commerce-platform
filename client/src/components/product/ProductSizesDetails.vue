@@ -22,6 +22,8 @@
 </template>
 
 <script setup lang="ts">
+import { ProductStock } from "../../composables/useProduct";
+
 defineProps({
   productSizes: {
     type: Array<string>,
@@ -29,10 +31,10 @@ defineProps({
   },
 });
 
-function orderProductSizes(sizes: string[]) {
+function orderProductSizes(productSizes: ProductStock) {
   const order = ["PP", "P", "M", "G", "GG", "XGG"];
 
-  return sizes.sort((a, b) => {
+  return Object.keys(productSizes).sort((a, b) => {
     return order.indexOf(a) - order.indexOf(b);
   });
 }

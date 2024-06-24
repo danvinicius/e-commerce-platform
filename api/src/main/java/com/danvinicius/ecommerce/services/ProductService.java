@@ -15,7 +15,6 @@ import com.danvinicius.ecommerce.dto.product.CreateProductRequestDTO;
 import com.danvinicius.ecommerce.dto.product.UpdateProductRequestDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
 import com.danvinicius.ecommerce.entities.product.Product;
-import com.danvinicius.ecommerce.entities.product.ProductSize;
 import com.danvinicius.ecommerce.exceptions.ResourceNotFoundException;
 import com.danvinicius.ecommerce.repositories.ProductRepository;
 
@@ -63,14 +62,7 @@ public class ProductService {
         for (Category category: categories) {
             product.getCategories().add(category);
         }
-
-        for (String size: data.productSizes()) {
-            ProductSize productSize = new ProductSize();
-            productSize.setProduct(product);
-            productSize.setSize(size);
-            product.getProductSizes().add(productSize);
-        }
-
+        product.setStock(data.stock());
         productRepository.save(product);
         return product;
     }
@@ -90,27 +82,6 @@ public class ProductService {
         productRepository.save(product);
         return product;
     }
-    public Product addSizeToProduct(String productId, String size) {
-        Product product = getProductById(productId);
-        ProductSize productSize = new ProductSize();
-        productSize.setSize(size);
-        if (!product.getProductSizes().contains(productSize)) {
-            productSize.setProduct(product);
-            product.getProductSizes().add(productSize);
-        }
-        return product;
-    }
-
-    public Product removeSizeToProduct(String productId, String size) {
-        Product product = getProductById(productId);
-        ProductSize productSize = new ProductSize();
-        productSize.setSize(size);
-        if (product.getProductSizes().contains(productSize)) {
-            productSize.setProduct(product);
-            product.getProductSizes().remove(productSize);
-        }
-        return product;
-    }
 
     public Product updateProduct(String id, UpdateProductRequestDTO data) {
         Product product = getProductById(id);
@@ -126,8 +97,8 @@ public class ProductService {
         if (data.price() != null) {
             product.setPrice(data.price());
         }
-        if (data.quantity() != null) {
-            product.setQuantity(data.quantity());
+        if (data.stock() != null) {
+            product.setStock(data.stock());
         }
         if (data.discount() != null) {
             product.setDiscount(data.discount());

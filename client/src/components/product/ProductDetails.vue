@@ -1,7 +1,7 @@
 <template>
-  <div class="product-details" v-if="productSizes.length">
+  <div class="product-details" v-if="product?.stock">
     <h3>Sizes</h3>
-    <ProductSizesDetails :productSizes="productSizes"></ProductSizesDetails>
+    <ProductSizesDetails :productSizes="product.stock"></ProductSizesDetails>
   </div>
 </template>
 
@@ -16,8 +16,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const productSizes = props.product.productSizes.map((ps) => ps.size);
 </script>
 
 <style scoped lang="scss">

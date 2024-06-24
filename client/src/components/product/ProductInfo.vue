@@ -5,8 +5,8 @@
     <p class="description" v-html="product?.description"></p>
     <ProductBenefits></ProductBenefits>
     <ProductSizes
-      v-if="productSizes"
-      :productSizes="productSizes"
+      v-if="product?.stock"
+      :productSizes="product.stock"
     ></ProductSizes>
     <AddToCartButton></AddToCartButton>
     <ProductDelivery></ProductDelivery>
@@ -21,14 +21,12 @@ import AddToCartButton from "./AddToCartButton.vue";
 import ProductBenefits from "./ProductBenefits.vue";
 import ProductSizes from "./ProductSizes.vue";
 import ProductDelivery from "./ProductDelivery.vue";
-const props = defineProps({
+defineProps({
   product: {
     type: Object as PropType<Product>,
     required: true,
   },
 });
-
-const productSizes = props.product.productSizes.map((ps) => ps.size);
 </script>
 
 <style scoped lang="scss">

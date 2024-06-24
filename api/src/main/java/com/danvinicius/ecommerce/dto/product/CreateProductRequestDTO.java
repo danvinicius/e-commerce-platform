@@ -1,6 +1,7 @@
 package com.danvinicius.ecommerce.dto.product;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.Set;
 
 import jakarta.validation.constraints.NotBlank;
@@ -11,9 +12,8 @@ public record CreateProductRequestDTO(
     @NotBlank String description,
     String imageUrl,
     @NotNull BigDecimal price,
-    @NotNull Integer quantity,
     Set<String> categoriesIds,
-    Set<String> productSizes,
+    Map<String, Integer> stock,
     Boolean recommendedOnMainPage,
     BigDecimal weight,
     Double discount

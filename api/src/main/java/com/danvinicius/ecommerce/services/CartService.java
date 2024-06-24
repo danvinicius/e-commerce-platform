@@ -74,11 +74,11 @@ public class CartService {
         data.items().stream().forEach(item -> {
             Product product = productService.getProductById(item.productId());
             CartItem cartItem = new CartItem(null, cart, product, item.quantity(), product.getPrice());
-            if (product.getQuantity() == 0 || item.quantity() > product.getQuantity()) {
+            if (product.getStock().get(item.size()) == 0 || item.quantity() > product.getStock().get(item.size())) {
                 throw new ProductUnavailableException("Item quantity not available");
             }
             cart.getItems().add(cartItem);
-            product.setQuantity(product.getQuantity() - item.quantity());
+            product.getStock().put(item.size(), product.getStock().get(item.size()) - item.quantity());
             productService.saveProduct(product);
         });
         updateCartTotalPrice(cart);
@@ -95,7 +95,7 @@ public class CartService {
 
         Product product = productService.getProductById(item.productId());
 
-        if (product.getQuantity() == 0 || item.quantity() > product.getQuantity()) {
+        if (product.getStock().get(item.size()) == 0 || item.quantity() > product.getStock().get(item.size())) {
             throw new ProductUnavailableException("Item quantity not available");
         }
 
@@ -113,7 +113,7 @@ public class CartService {
         cartRepository.save(cart);
         
         // decreases product quantity at stock and saves it
-        product.setQuantity(product.getQuantity() - item.quantity());
+        product.getStock().put(item.size(), product.getStock().get(item.size()) - item.quantity());
         productService.saveProduct(product);
         
         return cart;
@@ -134,11 +134,11 @@ public class CartService {
         CartItem cartItem = cart.getItems().stream().filter(i -> i.getProduct().getId().equals(product.getId())).findFirst().get();
 
         if (item.quantity() > cartItem.getQuantity()) {
-            product.setQuantity(product.getQuantity() + cartItem.getQuantity());
+            product.getStock().put(item.size(), product.getStock().get(item.size()) + cartItem.getQuantity());
             cart.getItems().remove(cartItem);
         } else {
             cartItem.setQuantity(cartItem.getQuantity() - item.quantity());
-            product.setQuantity(product.getQuantity() + item.quantity());
+            product.getStock().put(item.size(), product.getStock().get(item.size()) + item.quantity());
         }
         
         updateCartTotalPrice(cart);

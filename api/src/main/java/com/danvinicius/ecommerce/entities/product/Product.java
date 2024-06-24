@@ -3,7 +3,9 @@ package com.danvinicius.ecommerce.entities.product;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,7 +18,9 @@ import com.danvinicius.ecommerce.entities.order.OrderItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +28,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -56,14 +61,15 @@ public class Product implements Serializable {
 
     private Double weight;
 
-    private Integer quantity;
-
     private Boolean recommendedOnMainPage;
 
     private Double discount; // %
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<ProductSize> productSizes = new HashSet<ProductSize>();
+    @ElementCollection
+    @CollectionTable(name = "tb_product_stock", joinColumns = @JoinColumn(name = "product_id"))
+    @MapKeyColumn(name = "size")
+    @Column(name = "quantity")
+    private Map<String, Integer> stock = new HashMap<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -87,13 +93,13 @@ public class Product implements Serializable {
         this.description = data.description();
         this.imageUrl = data.imageUrl();
         this.price = data.price();
-        this.quantity = data.quantity();
+        this.stock = data.stock();
     }
 
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-                + ", quantity=" + quantity + ", categories=" + categories + "]";
+                + ", stock=" + stock + ", categories=" + categories + "]";
     }
 
     
