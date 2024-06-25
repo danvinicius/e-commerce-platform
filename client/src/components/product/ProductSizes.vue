@@ -4,6 +4,8 @@
       class="pointer"
       v-for="size in orderProductSizes(productSizes)"
       :key="size"
+      :class="{ selected: size == selectedSize }"
+      @click="updateSelectedSize(size)"
     >
       <p>{{ size }}</p>
     </li>
@@ -11,14 +13,15 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { onMounted, PropType } from "vue";
 import { ProductStock } from "../../composables/useProduct";
 
-defineProps({
+const props = defineProps({
   productSizes: {
     type: Object as PropType<ProductStock>,
     required: true,
   },
+  selectedSize: String,
 });
 
 function orderProductSizes(productSizes: ProductStock) {
@@ -28,6 +31,19 @@ function orderProductSizes(productSizes: ProductStock) {
     return order.indexOf(a) - order.indexOf(b);
   });
 }
+
+const emit = defineEmits(["update:selectedSize"]);
+
+const updateSelectedSize = (size: string) => {
+  emit("update:selectedSize", size);
+};
+
+onMounted(() => {
+  const initialSelectedSize = orderProductSizes(props.productSizes)[
+    Math.floor(orderProductSizes(props.productSizes).length / 2) - 1
+  ];
+  updateSelectedSize(initialSelectedSize);
+});
 </script>
 
 <style scoped lang="scss">
@@ -46,6 +62,12 @@ function orderProductSizes(productSizes: ProductStock) {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &.selected {
+      background: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      color: #fff;
+    }
   }
 }
 </style>

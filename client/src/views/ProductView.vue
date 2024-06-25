@@ -21,7 +21,7 @@ import Header from "../components/header/Header.vue";
 import Footer from "../components/footer/Footer.vue";
 import ProductImage from "../components/product/ProductImage.vue";
 import ProductInfo from "../components/product/ProductInfo.vue";
-import ProductDetails from "../components/product/ProductDetails.vue";
+import ProductDetails from "../components/product-details/ProductDetails.vue";
 
 import useProduct from "../composables/useProduct";
 import { useRoute } from "vue-router";

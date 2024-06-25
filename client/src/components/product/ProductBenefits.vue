@@ -29,6 +29,7 @@
 
     p {
       font-weight: bold;
+      text-transform: uppercase;
     }
   }
 }

@@ -7,6 +7,8 @@
     <ProductSizes
       v-if="product?.stock"
       :productSizes="product.stock"
+      v-model:selectedSize="selectedSize"
+      @update:selectedSize="(size) => (selectedSize = size)"
     ></ProductSizes>
     <AddToCartButton></AddToCartButton>
     <ProductDelivery></ProductDelivery>
@@ -14,19 +16,22 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, ref } from "vue";
 import { Product } from "../../composables/useProduct";
 import ProductPrice from "./ProductPrice.vue";
 import AddToCartButton from "./AddToCartButton.vue";
 import ProductBenefits from "./ProductBenefits.vue";
 import ProductSizes from "./ProductSizes.vue";
 import ProductDelivery from "./ProductDelivery.vue";
-defineProps({
+
+const props = defineProps({
   product: {
     type: Object as PropType<Product>,
     required: true,
   },
 });
+
+const selectedSize = ref("");
 </script>
 
 <style scoped lang="scss">
