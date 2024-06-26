@@ -7,34 +7,29 @@
       class="image-container flex justify-center"
       :style="{ background: imageBackground, height }"
     >
-      <img :src="getImageUrl(imageUrl)" :alt="name" :title="name" />
+      <img
+        :src="getImageUrl(product.imageUrl)"
+        :alt="product.name"
+        :title="product.name"
+      />
     </div>
     <div
       class="content-container flex column gap-5"
       :style="{ background: textBackground, color }"
     >
-      <p v-html="name"></p>
-      <p class="price">${{ price }}</p>
+      <p v-html="product.name"></p>
+      <p class="price">${{ product.price }}</p>
     </div>
   </router-link>
 </template>
   
   <script setup lang="ts">
+import { PropType } from "vue";
 import useHelpers from "../../composables/useHelpers";
+import { Product } from "../../composables/useProduct";
 const { getImageUrl, slugify } = useHelpers();
 const props = defineProps({
-  id: {
-    required: true,
-    type: String,
-  },
-  imageUrl: {
-    required: true,
-    type: String,
-  },
-  name: {
-    required: true,
-    type: String,
-  },
+  product: { type: Object as PropType<Product>, required: true },
   price: Number,
   height: Number,
   textBackground: String,
@@ -42,11 +37,16 @@ const props = defineProps({
   color: String,
 });
 
-const productLink = `/product/${slugify(props.name + "-" + props.id)}`;
+const productLink = `/product/${slugify(
+  props.product.name + "-" + props.product.id
+)}`;
 </script>
   
   <style scoped lang="scss">
 .product-card {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 300px;
   .image-container {
     height: 300px;
     background: var(--quaternary-color);

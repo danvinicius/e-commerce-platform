@@ -17,13 +17,12 @@
 </template>
 
 <script setup lang="ts">
-import { Product } from "../../composables/useProduct";
 import Timer from "../layout/Timer.vue";
 import ContentSwiper from "../home/ContentSwiper.vue";
 
-import useProduct from "../../composables/useProduct";
+import useCategory from "../../composables/useCategory";
 
-const { getOnSaleProducts } = useProduct();
+const { getOnSaleProducts } = useCategory();
 import { onMounted, ref } from "vue";
 
 const onSaleProducts = ref([]);

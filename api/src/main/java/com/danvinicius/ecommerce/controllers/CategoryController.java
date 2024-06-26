@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.danvinicius.ecommerce.dto.category.CategoryRequestDTO;
+import com.danvinicius.ecommerce.dto.product.ProductDTO;
 import com.danvinicius.ecommerce.entities.category.Category;
+import com.danvinicius.ecommerce.entities.product.Product;
 import com.danvinicius.ecommerce.services.CategoryService;
+import com.danvinicius.ecommerce.services.ProductService;
 
 import jakarta.validation.Valid;
 
@@ -28,9 +32,20 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable String id) {
-        Category category = categoryService.getCategoryById(id);
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping("/best-selling")
+    public ResponseEntity<List<ProductDTO>> getBestSellingProducts(Pageable pageable) {
+        List<Product> products = productService
+                .getBestSellingProducts(pageable);
+        return ResponseEntity.ok().body(products.stream().map(ProductDTO::new)
+                .toList());
+    }
+
+    @GetMapping("/{slug}")
+    public ResponseEntity<Category> getCategoryBySlug(@PathVariable String slug) {
+        Category category = categoryService.getCategoryBySlug(slug);
         return ResponseEntity.ok().body(category);
     }
 

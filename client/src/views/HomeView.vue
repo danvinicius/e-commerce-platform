@@ -5,6 +5,7 @@
     <ContentSwiper
       v-if="bestSellingProducts.length"
       title="Our Best Selling"
+      categoryLink="best-selling"
       :products="bestSellingProducts"
     ></ContentSwiper>
     <ProductsRecommendation></ProductsRecommendation>
@@ -16,6 +17,7 @@
     <ContentSwiper
       v-if="newArrivalProducts.length"
       title="New Arrival"
+      categoryLink="new-arrival"
       :products="newArrivalProducts"
     >
     </ContentSwiper>
@@ -32,7 +34,9 @@ import ProductsRecommendation from "../components/home/ProductsRecommendation.vu
 import OnSale from "../components/home/OnSale.vue";
 
 import useProduct from "../composables/useProduct";
-const { getAllProducts, getBestSellingProducts } = useProduct();
+import useCategory from "../composables/useCategory";
+const { getAllProducts } = useProduct();
+const { getBestSellingProducts } = useCategory();
 import { onMounted, ref } from "vue";
 
 const newArrivalProducts = ref([]);

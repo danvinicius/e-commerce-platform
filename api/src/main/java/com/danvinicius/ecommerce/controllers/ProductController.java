@@ -31,6 +31,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable String id) {
         Product product = productService.getProductById(id);
@@ -41,14 +42,6 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getAllProducts(Pageable pageable) {
         List<Product> products = productService
                 .getAllProducts(pageable);
-        return ResponseEntity.ok().body(products.stream().map(ProductDTO::new)
-                .toList());
-    }
-
-    @GetMapping("/best-selling")
-    public ResponseEntity<List<ProductDTO>> getBestSellingProducts(Pageable pageable) {
-        List<Product> products = productService
-                .getBestSellingProducts(pageable);
         return ResponseEntity.ok().body(products.stream().map(ProductDTO::new)
                 .toList());
     }

@@ -25,14 +25,7 @@ export interface RecommendedProduct extends Product {
   title: string;
 }
 
-interface ProductRequest extends Omit<Product, "imageUrl"> {
-  image_url: string;
-}
-interface RecommendedProductRequest
-  extends Omit<RecommendedProduct, "imageUrl"> {
-  image_url: string;
-}
-interface BannerProductRequest extends Omit<BannerProduct, "imageUrl"> {
+export interface ProductRequest extends Omit<Product, "imageUrl"> {
   image_url: string;
 }
 
@@ -46,20 +39,6 @@ const useProduct = () => {
       ...product,
       imageUrl: images[Math.floor(Math.random() * images.length)],
     }))
-  };
-  const getBestSellingProducts = async (): Promise<Product[]> => {
-    const bestSellingProducts = await get('/product/best-selling');
-    return bestSellingProducts.map((product: ProductRequest) => ({
-      ...product,
-      imageUrl: images[Math.floor(Math.random() * images.length)],
-    }));
-  };
-  const getOnSaleProducts = async (): Promise<Product[]> => {
-    const category = await get('/category/6ff4a8d9-c1da-44e6-8bae-1b035b5d1269');
-    return category.products.map((product: ProductRequest) => ({
-      ...product,
-      imageUrl: images[Math.floor(Math.random() * images.length)],
-    }));
   };
   const getBannerProduct = async (): Promise<BannerProduct> => {
     const bannerProduct = await get('/product/7968223a-9415-47e7-8f7b-adfb271b7cda');
@@ -98,8 +77,6 @@ const useProduct = () => {
   return {
     getAllProducts,
     getBannerProduct,
-    getOnSaleProducts,
-    getBestSellingProducts,
     getRecommendedProduct,
     getProductBySlug,
   };

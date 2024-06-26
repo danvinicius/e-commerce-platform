@@ -1,6 +1,9 @@
 <template>
   <section class="content-swiper">
-    <h2 v-html="title"></h2>
+    <div class="title">
+      <h2 v-html="title"></h2>
+      <router-link v-if="categoryLink" :to="categoryLink">Ver mais</router-link>
+    </div>
     <Swiper
       :slides="slides"
       :slidesPerView="slidesPerView"
@@ -24,6 +27,7 @@ const props = defineProps({
     required: true,
     type: Array<Product>,
   },
+  categoryLink: String,
   slidesPerView: Number,
   spaceBetween: Number,
   height: Number,
@@ -37,10 +41,7 @@ onMounted(() => {
     slides.value = props.products.map((product: Product) => ({
       component: shallowRef(ProductCard),
       props: {
-        id: product.id,
-        imageUrl: product.imageUrl,
-        name: product.name,
-        price: product.price,
+        product,
         height: props.height,
         textBackground: props.textBackground,
         imageBackground: props.imageBackground,
@@ -56,8 +57,18 @@ section.content-swiper {
   margin: 0 0 4rem;
   // if add flex column swiper.js crashes (?)
 
-  h2 {
-    margin-bottom: 1rem;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      color: (var(--primary-color));
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
   }
 }
 </style>

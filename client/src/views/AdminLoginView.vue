@@ -7,12 +7,12 @@
   </div>
 </template>
     
-    <script setup lang="ts">
+<script setup lang="ts">
 import Header from "../components/header/Header.vue";
 import AdminLoginForm from "../components/admin/AdminLoginForm.vue";
 </script>
     
-    <style scoped lang="scss">
+<style scoped lang="scss">
 .admin-login {
   display: flex;
   justify-content: center;

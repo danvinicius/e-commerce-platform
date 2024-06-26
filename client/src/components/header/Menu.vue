@@ -7,14 +7,14 @@
         >
       </li>
       <li>
-        <router-link to="/products" class="primary-text-color decoration-none"
+        <router-link
+          to="/new-arrival"
+          class="primary-text-color decoration-none"
           >Our New Arrival</router-link
         >
       </li>
       <li>
-        <router-link
-          to="/category/anime"
-          class="primary-text-color decoration-none"
+        <router-link to="/anime" class="primary-text-color decoration-none"
           >Anime</router-link
         >
       </li>
