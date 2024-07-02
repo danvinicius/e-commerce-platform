@@ -12,14 +12,14 @@ const images = [
 ];
 
 export interface Category {
-  id: String;
-  name: String;
-  discount: Number;
-  products: Product;
+  id: string;
+  name: string;
+  discount: number;
+  products: Product[];
 }
 
 const useCategory = () => {
-  const getAllCategorys = async (): Promise<Category[]> => {
+  const getAllCategories = async (): Promise<Category[]> => {
     const categories = await get("/category");
     return categories.map((c) => ({
       ...c,
@@ -56,7 +56,7 @@ const useCategory = () => {
   };
 
   return {
-    getAllCategorys,
+    getAllCategories,
     getCategoryBySlug,
     getBestSellingProducts,
     getOnSaleProducts

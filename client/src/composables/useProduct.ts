@@ -1,9 +1,10 @@
+import { Category } from "./useCategory";
 import useFetch from "./useFetch";
 
 const {get} = useFetch()
 
 export interface ProductStock {
-  [key: string]: string;
+  [key: string]: number;
 }
 
 export interface Product {
@@ -13,7 +14,10 @@ export interface Product {
   description: string;
   price: number;
   recommendedOnMainPage?: boolean;
-  stock: ProductStock
+  stock: ProductStock;
+  weight: number;
+  discount: number;
+  categories: Category[]
 }
 
 export interface BannerProduct extends Product {

@@ -22,11 +22,12 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from "vue";
 import { ProductStock } from "../../composables/useProduct";
 
 defineProps({
   productSizes: {
-    type: Array<string>,
+    type: Object as PropType<ProductStock>,
     required: true,
   },
 });
@@ -59,20 +60,4 @@ const productSizesWidths = {
 </script>
 
 <style scoped lang="scss">
-table,
-tr,
-td,
-th {
-  border: 1px solid var(--secondary-text-color);
-  text-align: center;
-}
-
-td,
-th {
-  padding: 0.75rem 4rem;
-}
-
-th {
-  font-weight: bold;
-}
 </style>
