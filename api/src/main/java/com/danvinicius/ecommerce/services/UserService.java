@@ -69,7 +69,7 @@ public class UserService implements UserDetailsService {
         cart.setUser(user);
         user.setCart(cart);
         userRepository.save(user);
-        this.sendRegistrationEmail(user);
+        // this.sendRegistrationEmail(user);
         return user;
     }
 

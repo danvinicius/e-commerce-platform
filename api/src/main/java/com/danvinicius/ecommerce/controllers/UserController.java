@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.danvinicius.ecommerce.dto.auth.AuthenticationRequestDTO;
+import com.danvinicius.ecommerce.dto.auth.AuthenticationResponseDTO;
 import com.danvinicius.ecommerce.dto.user.UserRequestDTO;
 import com.danvinicius.ecommerce.entities.user.User;
 import com.danvinicius.ecommerce.services.UserService;
@@ -25,6 +27,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    AuthController authController;
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {
@@ -45,9 +50,11 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDTO data) {
-        User user = this.userService.createUser(data);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<AuthenticationResponseDTO> createUser(@Valid @RequestBody UserRequestDTO data) {
+        this.userService.createUser(data);
+        ResponseEntity<AuthenticationResponseDTO> response = authController
+        .authenticate(new AuthenticationRequestDTO(data.email(), data.password()));
+        return response;
     }
 
     @PostMapping("/admin")

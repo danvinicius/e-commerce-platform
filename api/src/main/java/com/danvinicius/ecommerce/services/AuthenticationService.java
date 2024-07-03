@@ -27,7 +27,11 @@ public class AuthenticationService {
     public AuthenticationResponseDTO authenticate(AuthenticationRequestDTO data) {
         UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         Authentication auth = this.authenticationManager.authenticate(usernamePassword);
-        String token = tokenService.generateToken((User) auth.getPrincipal());
-        return new AuthenticationResponseDTO(token);
+        User user = (User) auth.getPrincipal();
+        String token = tokenService.generateToken(user);
+        String name = user.getName();
+        String email = user.getEmail();
+        String role = user.getRole();
+        return new AuthenticationResponseDTO(token, name, email, role);
     }
 }
