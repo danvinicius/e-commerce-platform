@@ -4,7 +4,7 @@
     <div class="container" v-if="product">
       <div class="main flex">
         <div class="product-image-wrapper">
-          <ProductImage :imageUrl="product.imageUrl"></ProductImage>
+          <ProductImage :product="product"></ProductImage>
         </div>
         <div class="product-info-wrapper">
           <ProductInfo :product="product"></ProductInfo>

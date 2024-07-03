@@ -1,7 +1,8 @@
 <template>
   <div class="product-info">
     <h1 v-html="product.name"></h1>
-    <ProductPrice class="price" :price="product.price"></ProductPrice>
+    <ProductDiscountTag :product="product" class="product-discount-tag"/>
+    <ProductPrice class="price" :product="product"/>
     <p class="description" v-html="product?.description"></p>
     <ProductBenefits></ProductBenefits>
     <ProductSizes
@@ -23,8 +24,9 @@ import AddToCartButton from "./AddToCartButton.vue";
 import ProductBenefits from "./ProductBenefits.vue";
 import ProductSizes from "./ProductSizes.vue";
 import ProductDelivery from "./ProductDelivery.vue";
+import ProductDiscountTag from "./ProductDiscountTag.vue";
 
-const props = defineProps({
+defineProps({
   product: {
     type: Object as PropType<Product>,
     required: true,
@@ -35,7 +37,14 @@ const selectedSize = ref("");
 </script>
 
 <style scoped lang="scss">
+.product-discount-tag {
+  width: max-content;
+  margin-top: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
 .price {
+  margin-top: .5rem;
   margin-bottom: 2rem;
 }
 .description {

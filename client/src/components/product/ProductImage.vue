@@ -1,25 +1,18 @@
 <template>
-  <div>
-    <img :src="getImageUrl(imageUrl)" :alt="name" :title="name" />
+  <div class="product-image">
+    <img :src="getImageUrl(product.imageUrl)" :alt="product.name" :title="product.name" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { PropType } from "vue";
 import useHelpers from "../../composables/useHelpers";
-const { getImageUrl, slugify } = useHelpers();
+import { Product } from "../../composables/useProduct";
+const { getImageUrl } = useHelpers();
 
-const props = defineProps({
-  name: {
-    required: true,
-    type: String,
-  },
-  imageUrl: {
-    required: true,
-    type: String,
-  },
+defineProps({
+  product: Object as PropType<Product>
 });
-
-const productLink = `/product/${slugify(props.name + "-" + props.id)}`;
 </script>
 
 <style scoped lang="scss">

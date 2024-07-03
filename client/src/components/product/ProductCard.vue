@@ -3,6 +3,7 @@
     :to="productLink"
     class="product-card primary-text-color decoration-none"
   >
+  <ProductDiscountTag :product="product" class="product-discount-tag"/>
     <div
       class="image-container flex justify-center"
       :style="{ background: imageBackground, height }"
@@ -18,7 +19,7 @@
       :style="{ background: textBackground, color }"
     >
       <p v-html="product.name"></p>
-      <p class="price">${{ product.price }}</p>
+      <ProductPrice :product="product"/>
     </div>
   </router-link>
 </template>
@@ -27,6 +28,8 @@
 import { PropType } from "vue";
 import useHelpers from "../../composables/useHelpers";
 import { Product } from "../../composables/useProduct";
+import ProductPrice from "./ProductPrice.vue";
+import ProductDiscountTag from "./ProductDiscountTag.vue";
 const { getImageUrl, slugify } = useHelpers();
 const props = defineProps({
   product: { type: Object as PropType<Product>, required: true },
@@ -47,6 +50,15 @@ const productLink = `/product/${slugify(
   display: flex;
   flex-direction: column;
   flex-basis: 300px;
+  position: relative;
+
+  .product-discount-tag {
+    border-radius: 0 0 5px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   .image-container {
     height: 300px;
     background: var(--quaternary-color);

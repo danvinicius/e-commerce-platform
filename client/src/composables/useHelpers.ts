@@ -24,7 +24,7 @@ const useHelpers = () => {
       minimumFractionDigits: 2
     }
     if (withStyle) options.style = 'currency';
-    const formattedPrice = price.toLocaleString(locale, options)
+    const formattedPrice = price.toLocaleString(locale, options).replace(/\s/, '')
     return formattedPrice;
   }
 
