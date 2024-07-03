@@ -1,5 +1,5 @@
 <template>
-  <label :for="slugify(name)">
+  <label :for="slugify(name)" :class="{ error }">
     <p v-html="label"></p>
     <input
       :type="type"
@@ -25,6 +25,7 @@ const updateValue = (evt: any) => {
 defineProps({
   value: String,
   label: String,
+  error: String,
   name: {
     type: String,
     required: true,
@@ -43,6 +44,14 @@ label {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+
+  &.error {
+    color: var(--error-color);
+
+    input {
+      border: 1px solid var(--error-color);
+    }
+  }
 
   input {
     width: 100%;

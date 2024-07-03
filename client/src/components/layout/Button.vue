@@ -1,5 +1,9 @@
 <template>
-  <button :style="{ background, color, border, padding }">
+  <button
+    :style="{ background, color, border, padding }"
+    :disabled="loading"
+    :class="{ loading }"
+  >
     <img :src="iconPath" alt="" v-if="icon" />
     {{ text }}
   </button>
@@ -25,6 +29,10 @@ const props = defineProps({
     required: false,
     type: String,
   },
+  loading: {
+    required: false,
+    type: Boolean,
+  },
 });
 
 const iconPath = ref("");
@@ -43,9 +51,14 @@ button {
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: center;
 
   &:hover {
     transform: scale(1.02);
+  }
+
+  &.loading {
+    opacity: 0.75;
   }
 }
 </style>

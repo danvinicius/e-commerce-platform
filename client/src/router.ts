@@ -9,18 +9,29 @@ import AdminView from './views/AdminView.vue'
 import AdminProductView from './views/AdminProductView.vue'
 
 const routes = [
-  { path: '/', component: HomeView },
-  { path: '/login', component: LoginView },
-  { path: '/admin', component: AdminView },
-  { path: '/admin/login', component: AdminLoginView },
-  { path: '/admin/product', component: AdminProductView },
-  { path: '/product/:product', component: ProductView },
-  { path: '/:category', component: CategoryView },
+  { path: '/', component: HomeView, name: 'home' },
+  { path: '/login', component: LoginView, name: 'login' },
+  { path: '/admin', component: AdminView, name: 'admin' },
+  { path: '/admin/login', component: AdminLoginView, name: 'adminLogin' },
+  { path: '/admin/product', component: AdminProductView, name: 'adminProduct' },
+  { path: '/product/:product', component: ProductView, name: 'product' },
+  { path: '/:category', component: CategoryView, name: 'category' },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+import useLogin from "./composables/useLogin";
+import useLocalStorage from "./composables/useLocalStorage";
+const { isAdmin } = useLogin();
+const { getItem } = useLocalStorage();
+
+router.beforeEach(async (to, from, next) => {
+  const token = (getItem('token'))
+  if ((to.name == 'admin' || to.name == 'adminProduct') && (!token || (!(await isAdmin(token))))) next({ name: 'adminLogin' })
+  else next()
 })
 
 export default router;

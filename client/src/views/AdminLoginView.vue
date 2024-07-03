@@ -1,5 +1,5 @@
 <template>
-  <Header></Header>
+  <Header :isAdmin="true"></Header>
   <div class="admin-login">
     <div class="container flex">
       <AdminLoginForm></AdminLoginForm>

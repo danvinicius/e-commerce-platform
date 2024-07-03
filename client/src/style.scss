@@ -8,6 +8,7 @@
   --quaternary-color: #f2f5ff;
   --primary-text-color: #091833;
   --secondary-text-color: #6d6d6d;
+  --error-color: #ff3333;
   --helper-color: #f2f2f2;
   font-family: "Inter", Helvetica, sans-serif;
 }
@@ -157,4 +158,8 @@ th {
 
 a {
   color: var(--primary-color);
+}
+
+.error {
+  color: var(--error-color);
 }

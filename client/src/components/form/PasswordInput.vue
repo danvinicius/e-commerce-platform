@@ -7,6 +7,7 @@
       >Forgot password?</small
     >
     <Input
+      :error="error"
       :type="type"
       name="password"
       :placeholder="placeholder"
@@ -48,6 +49,7 @@ const changeToForgotPassword = () => {
 };
 
 defineProps({
+  error: String,
   value: String,
   label: String,
   placeholder: String,

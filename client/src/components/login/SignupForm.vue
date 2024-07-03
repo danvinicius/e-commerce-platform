@@ -25,7 +25,7 @@
         @update:value="(value) => (email = value)"
       />
       <Input
-        type="phone"
+        type="tel"
         name="phone"
         placeholder="(xx) xxxxx-xxxx"
         label="Phone"
@@ -39,10 +39,12 @@
         @update:value="(value) => (password = value)"
         :enableForgotPassword="false"
       />
+      <span class="error">{{ error }}</span>
       <Button
         text="Login"
         background="var(--primary-color)"
         :border="'none'"
+        :loading="loading"
         @click.prevent="handleSignup"
       ></Button>
     </Form>
@@ -53,15 +55,20 @@
 import Button from "../layout/Button.vue";
 import Input from "../form/Input.vue";
 import Form from "../form/Form.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 import useLogin from "../../composables/useLogin";
+import useLocalStorage from "../../composables/useLocalStorage";
 import PasswordInput from "../form/PasswordInput.vue";
-const { create } = useLogin();
+const { create, loading, data, error, verifyAuth } = useLogin();
 
 const name = ref("");
 const phone = ref("");
 const email = ref("");
 const password = ref("");
+
+const router = useRouter();
+const { setItem } = useLocalStorage();
 
 defineProps({
   currentView: String,
@@ -80,19 +87,35 @@ const handleSignup = async () => {
     phone.value.length &&
     name.value.length
   ) {
-    try {
-      const data = await create({
-        email: email.value,
-        password: password.value,
-        phone: phone.value,
-        name: name.value,
-      });
-      return data;
-    } catch (error) {
-      return null;
+    await create({
+      email: email.value,
+      password: password.value,
+      phone: phone.value,
+      name: name.value,
+    });
+
+    if (data.value) {
+      setItem("token", data.value.token);
+      setItem("name", data.value.name);
+      setItem("email", data.value.email);
+      verifyAuth();
+      emptyData();
+      router.push("/");
     }
   }
 };
+
+const emptyData = () => {
+  email.value = "";
+  password.value = "";
+  phone.value = "";
+  name.value = "";
+  error.value = "";
+};
+
+onMounted(() => {
+  emptyData();
+});
 </script>
   
   <style scoped lang="scss">

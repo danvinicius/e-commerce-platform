@@ -14,7 +14,7 @@
         placeholder="your@email.com"
         label="E-mail"
         :value="email"
-        @update:value="(value) => (email = value)"
+        @update:value="(value) => updateEmail(value)"
       />
       <PasswordInput
         type="password"
@@ -23,14 +23,16 @@
         label="Password"
         :value="password"
         @changeToForgotPassword="changeToForgotPassword"
-        @update:value="(value) => (password = value)"
-        :enableForgotPassword="false"
+        @update:value="(value) => updatePassword(value)"
+        :enableForgotPassword="true"
       />
+      <span class="error">{{ error }}</span>
       <Button
         text="Login"
         background="var(--primary-color)"
         :border="'none'"
         @click.prevent="handleLogin"
+        :loading="loading"
       ></Button>
     </Form>
   </section>
@@ -39,11 +41,15 @@
 <script setup lang="ts">
 import Button from "../layout/Button.vue";
 import Input from "../form/Input.vue";
+import PasswordInput from "../form/PasswordInput.vue";
 import Form from "../form/Form.vue";
 import useLogin from "../../composables/useLogin";
-const { authenticate } = useLogin();
-import { ref } from "vue";
-import PasswordInput from "../form/PasswordInput.vue";
+import useLocalStorage from "../../composables/useLocalStorage";
+const { authenticate, loading, data, error } = useLogin();
+const { setItem } = useLocalStorage();
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const email = ref("");
 const password = ref("");
@@ -62,19 +68,44 @@ const changeToForgotPassword = () => {
   emit("update:currentView", "forgot");
 };
 
-const handleLogin = async (event: any) => {
+const updateEmail = (value: string) => {
+  emptyError();
+  email.value = value;
+};
+
+const updatePassword = (value: string) => {
+  emptyError();
+  password.value = value;
+};
+
+const handleLogin = async () => {
   if (email.value.length && password.value.length) {
-    try {
-      const data = await authenticate({
-        email: email.value,
-        password: password.value,
-      });
-      return data;
-    } catch (error) {
-      return null;
+    await authenticate({
+      email: email.value,
+      password: password.value,
+    });
+
+    if (data.value) {
+      setItem("token", data.value.token);
+      setItem("name", data.value.name);
+      setItem("email", data.value.email);
+      emptyData();
+      router.push("/");
     }
   }
 };
+
+const emptyError = () => (error.value = "");
+
+const emptyData = () => {
+  email.value = "";
+  password.value = "";
+  emptyError();
+};
+
+onMounted(() => {
+  emptyData();
+});
 </script>
 
 <style scoped lang="scss">
