@@ -18,8 +18,11 @@ The aim of this project is to practice Java and Spring Framework with VueJS clie
 ## Presentation
 
 <div style="display: inline_block"><br>
-    <img src="img/portfolio_neo6_1.jpeg" width="450"/>
-    <img src="img/portfolio_neo6_2.jpeg" width="450"/>
-    <img src="img/portfolio_neo6_3.jpeg" width="450"/>
-    <img src="img/portfolio_neo6_4.jpeg" width="450"/>
+    <img src="img/portfolio_header.jpeg" width="450"/>
+    <img src="img/portfolio_best_selling.jpeg" width="450"/>
+    <img src="img/portfolio_promotion.jpeg" width="450"/>
+    <img src="img/portfolio_new_arrival.jpeg" width="450"/>
+    <img src="img/portfolio_pdp.jpeg" width="450"/>
+    <img src="img/portfolio_product_details.jpeg" width="450"/>
+    <img src="img/portfolio_login.jpeg" width="450"/>
 </div>
