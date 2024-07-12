@@ -1,4 +1,4 @@
-# Neo6 E-commerce
+# E-commerce Platform
 
 <div style="display: inline_block">
     <img align="center" alt="Java" title="Java" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg">
@@ -24,7 +24,7 @@
 
 ## Introduction
 
-Neo6 E-commerce is an application built on some of the hottest technologies such as [Spring Boot](https://spring.io/projects/spring-boot) and [Vue.js](https://vuejs.org/).
+This is an application built on some of the hottest technologies such as [Spring Boot](https://spring.io/projects/spring-boot) and [Vue.js](https://vuejs.org/).
 The aim of this project, in addition to practice these technologies, is to help shopkeepers build their online store.<br><br>
 This project is still 🚧 <b>under development</b> 🚧
 
@@ -53,7 +53,7 @@ This project is still 🚧 <b>under development</b> 🚧
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/danvinicius/neo6-ecommerce.git
+git clone https://github.com/danvinicius/ecommerce-platform.git
 ```
 
 2. Install dependencies with [Maven](https://maven.apache.org/)
@@ -186,5 +186,5 @@ There's a connection to [Email Service](https://github.com/danvinicius/email-ser
 <br>
 
 # License
-Neo6 E-Commerce is a truly open-source application that will always be free under the [MIT License](https://opensource.org/license/mit).
+This is a truly open-source application that will always be free under the [MIT License](https://opensource.org/license/mit).
 
